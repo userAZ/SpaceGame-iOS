@@ -7,23 +7,23 @@
 //
 
 #import "MyScene.h"
-
+#import "NewScene.h"
 @implementation MyScene
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
-        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+        SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"farback.gif"];
+        background.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
+        [self addChild:background];
         
-        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        
-        myLabel.text = @"Hello, World!";
-        myLabel.fontSize = 30;
-        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
-        
-        [self addChild:myLabel];
+        SKLabelNode *TitleNode = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
+        TitleNode.text = @"Space Fighter";
+        TitleNode.fontSize = 42;
+        TitleNode.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
+        TitleNode.name = @"TitleNode";
+        [self addChild:TitleNode];
     }
     return self;
 }
@@ -31,19 +31,27 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
+    SKNode *TitleNode = [self childNodeWithName:@"TitleNode"];
+    if (TitleNode != nil)
+    {
+        TitleNode.name = nil;
+        SKAction *moveUp = [SKAction moveByX: 0 y: 100.0 duration: 0.5];
+        SKAction *zoom = [SKAction scaleTo: 2.0 duration: 0.25];
+        SKAction *pause = [SKAction waitForDuration: 0.5];
+        SKAction *fadeAway = [SKAction fadeOutWithDuration: 0.25];
+        SKAction *remove = [SKAction removeFromParent];
+        SKAction *moveSequence = [SKAction sequence:@[moveUp, zoom, pause, fadeAway, remove]];
         
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
+        //SKView * skView = (SKView *)self.view;
+        //NSLog(@"skview:")
         
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
+        [TitleNode runAction: moveSequence completion:^{
+            SKScene *myScene  = [[NewScene alloc] initWithSize:self.size];
+            SKTransition *doors = [SKTransition doorsOpenVerticalWithDuration:0.5];
+            [self.view presentScene:myScene transition:doors];
+        }];
     }
+
 }
 
 -(void)update:(CFTimeInterval)currentTime {

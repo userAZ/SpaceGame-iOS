@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E50340ED1973082D00A3C131 /* one_bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = E50340EC1973082D00A3C131 /* one_bullet.png */; };
+		E50340F019730C7900A3C131 /* Bar.png in Resources */ = {isa = PBXBuildFile; fileRef = E50340EE19730C7900A3C131 /* Bar.png */; };
+		E50340F919731F1000A3C131 /* barOutline.png in Resources */ = {isa = PBXBuildFile; fileRef = E50340F819731F1000A3C131 /* barOutline.png */; };
+		E50E160A199D919200F007C1 /* EXPLOSION.atlas in Resources */ = {isa = PBXBuildFile; fileRef = E50E1609199D919200F007C1 /* EXPLOSION.atlas */; };
 		E515B5A21963698400CB0997 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E515B5A11963698400CB0997 /* Foundation.framework */; };
 		E515B5A41963698400CB0997 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E515B5A31963698400CB0997 /* CoreGraphics.framework */; };
 		E515B5A61963698500CB0997 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E515B5A51963698500CB0997 /* UIKit.framework */; };
@@ -25,6 +29,32 @@
 		E515B5CD1963698500CB0997 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E515B5A51963698500CB0997 /* UIKit.framework */; };
 		E515B5D51963698500CB0997 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E515B5D31963698500CB0997 /* InfoPlist.strings */; };
 		E515B5D71963698500CB0997 /* SpaceGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E515B5D61963698500CB0997 /* SpaceGameTests.m */; };
+		E515B5E31963699F00CB0997 /* player_ship.png in Resources */ = {isa = PBXBuildFile; fileRef = E515B5E01963699F00CB0997 /* player_ship.png */; };
+		E515B5E51963699F00CB0997 /* farback.gif in Resources */ = {isa = PBXBuildFile; fileRef = E515B5E21963699F00CB0997 /* farback.gif */; };
+		E515B5E819636A3C00CB0997 /* NewScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E515B5E719636A3C00CB0997 /* NewScene.m */; };
+		E51E1313196A270500E46821 /* FireButtonPlaceHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = E51E1312196A270500E46821 /* FireButtonPlaceHolder.png */; };
+		E51E1319196B846800E46821 /* bossBullet2.png in Resources */ = {isa = PBXBuildFile; fileRef = E51E1318196B846800E46821 /* bossBullet2.png */; };
+		E51E131B196B859300E46821 /* boss1.png in Resources */ = {isa = PBXBuildFile; fileRef = E51E131A196B859300E46821 /* boss1.png */; };
+		E528349C19919BCB009000CD /* redbossbullet2.png in Resources */ = {isa = PBXBuildFile; fileRef = E528349919919BCB009000CD /* redbossbullet2.png */; };
+		E528349D19919BCB009000CD /* redbossbullet3.png in Resources */ = {isa = PBXBuildFile; fileRef = E528349A19919BCB009000CD /* redbossbullet3.png */; };
+		E528349F19919BFB009000CD /* redbossbullet.png in Resources */ = {isa = PBXBuildFile; fileRef = E528349E19919BFB009000CD /* redbossbullet.png */; };
+		E54F16E0197092F500C679D3 /* f2.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16DB197092F500C679D3 /* f2.png */; };
+		E54F16E1197092F500C679D3 /* f3.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16DC197092F500C679D3 /* f3.png */; };
+		E54F16E2197092F500C679D3 /* f4.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16DD197092F500C679D3 /* f4.png */; };
+		E54F16E3197092F500C679D3 /* f5.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16DE197092F500C679D3 /* f5.png */; };
+		E54F16E4197092F500C679D3 /* f6.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16DF197092F500C679D3 /* f6.png */; };
+		E54F16EF1970C8A900C679D3 /* beam5.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16ED1970C8A900C679D3 /* beam5.png */; };
+		E54F16F01970C8A900C679D3 /* beam6.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16EE1970C8A900C679D3 /* beam6.png */; };
+		E54F16F71970CD4500C679D3 /* beam7.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16F51970CD4500C679D3 /* beam7.png */; };
+		E54F16F81970CD4500C679D3 /* beam8.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16F61970CD4500C679D3 /* beam8.png */; };
+		E54F16FA1970E17300C679D3 /* boss2.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16F91970E17300C679D3 /* boss2.png */; };
+		E56476F219A1952700C96730 /* enemyShip3.png in Resources */ = {isa = PBXBuildFile; fileRef = E56476F019A1952700C96730 /* enemyShip3.png */; };
+		E56476F319A1952700C96730 /* enemyShip4.png in Resources */ = {isa = PBXBuildFile; fileRef = E56476F119A1952700C96730 /* enemyShip4.png */; };
+		E56476F819A19DFF00C96730 /* DownArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E56476F419A19DFF00C96730 /* DownArrow.png */; };
+		E56476F919A19DFF00C96730 /* LeftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E56476F519A19DFF00C96730 /* LeftArrow.png */; };
+		E56476FA19A19DFF00C96730 /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E56476F619A19DFF00C96730 /* RightArrow.png */; };
+		E56476FB19A19DFF00C96730 /* UpArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E56476F719A19DFF00C96730 /* UpArrow.png */; };
+		E5A36869199AF6BF00617404 /* enemyShip1.png in Resources */ = {isa = PBXBuildFile; fileRef = E5A36868199AF6BF00617404 /* enemyShip1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +68,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E50340EC1973082D00A3C131 /* one_bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = one_bullet.png; sourceTree = "<group>"; };
+		E50340EE19730C7900A3C131 /* Bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bar.png; sourceTree = "<group>"; };
+		E50340F819731F1000A3C131 /* barOutline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barOutline.png; sourceTree = "<group>"; };
+		E50E1609199D919200F007C1 /* EXPLOSION.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = EXPLOSION.atlas; sourceTree = "<group>"; };
 		E515B59E1963698400CB0997 /* SpaceGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E515B5A11963698400CB0997 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E515B5A31963698400CB0997 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -62,6 +96,33 @@
 		E515B5D21963698500CB0997 /* SpaceGameTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SpaceGameTests-Info.plist"; sourceTree = "<group>"; };
 		E515B5D41963698500CB0997 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E515B5D61963698500CB0997 /* SpaceGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpaceGameTests.m; sourceTree = "<group>"; };
+		E515B5E01963699F00CB0997 /* player_ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_ship.png; sourceTree = "<group>"; };
+		E515B5E21963699F00CB0997 /* farback.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = farback.gif; sourceTree = "<group>"; };
+		E515B5E619636A3C00CB0997 /* NewScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewScene.h; sourceTree = "<group>"; };
+		E515B5E719636A3C00CB0997 /* NewScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewScene.m; sourceTree = "<group>"; };
+		E51E1312196A270500E46821 /* FireButtonPlaceHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FireButtonPlaceHolder.png; sourceTree = "<group>"; };
+		E51E1318196B846800E46821 /* bossBullet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bossBullet2.png; sourceTree = "<group>"; };
+		E51E131A196B859300E46821 /* boss1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boss1.png; sourceTree = "<group>"; };
+		E528349919919BCB009000CD /* redbossbullet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redbossbullet2.png; sourceTree = "<group>"; };
+		E528349A19919BCB009000CD /* redbossbullet3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redbossbullet3.png; sourceTree = "<group>"; };
+		E528349E19919BFB009000CD /* redbossbullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redbossbullet.png; sourceTree = "<group>"; };
+		E54F16DB197092F500C679D3 /* f2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = f2.png; sourceTree = "<group>"; };
+		E54F16DC197092F500C679D3 /* f3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = f3.png; sourceTree = "<group>"; };
+		E54F16DD197092F500C679D3 /* f4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = f4.png; sourceTree = "<group>"; };
+		E54F16DE197092F500C679D3 /* f5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = f5.png; sourceTree = "<group>"; };
+		E54F16DF197092F500C679D3 /* f6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = f6.png; sourceTree = "<group>"; };
+		E54F16ED1970C8A900C679D3 /* beam5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beam5.png; sourceTree = "<group>"; };
+		E54F16EE1970C8A900C679D3 /* beam6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beam6.png; sourceTree = "<group>"; };
+		E54F16F51970CD4500C679D3 /* beam7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beam7.png; sourceTree = "<group>"; };
+		E54F16F61970CD4500C679D3 /* beam8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beam8.png; sourceTree = "<group>"; };
+		E54F16F91970E17300C679D3 /* boss2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boss2.png; sourceTree = "<group>"; };
+		E56476F019A1952700C96730 /* enemyShip3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemyShip3.png; sourceTree = "<group>"; };
+		E56476F119A1952700C96730 /* enemyShip4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemyShip4.png; sourceTree = "<group>"; };
+		E56476F419A19DFF00C96730 /* DownArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DownArrow.png; sourceTree = "<group>"; };
+		E56476F519A19DFF00C96730 /* LeftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow.png; sourceTree = "<group>"; };
+		E56476F619A19DFF00C96730 /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RightArrow.png; sourceTree = "<group>"; };
+		E56476F719A19DFF00C96730 /* UpArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UpArrow.png; sourceTree = "<group>"; };
+		E5A36868199AF6BF00617404 /* enemyShip1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemyShip1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +192,38 @@
 				E515B5BC1963698500CB0997 /* ViewController.m */,
 				E515B5BE1963698500CB0997 /* MyScene.h */,
 				E515B5BF1963698500CB0997 /* MyScene.m */,
+				E515B5E619636A3C00CB0997 /* NewScene.h */,
+				E515B5E719636A3C00CB0997 /* NewScene.m */,
+				E50E1609199D919200F007C1 /* EXPLOSION.atlas */,
+				E5A36868199AF6BF00617404 /* enemyShip1.png */,
+				E56476F419A19DFF00C96730 /* DownArrow.png */,
+				E56476F519A19DFF00C96730 /* LeftArrow.png */,
+				E56476F619A19DFF00C96730 /* RightArrow.png */,
+				E56476F719A19DFF00C96730 /* UpArrow.png */,
+				E56476F019A1952700C96730 /* enemyShip3.png */,
+				E56476F119A1952700C96730 /* enemyShip4.png */,
 				E515B5C11963698500CB0997 /* Spaceship.png */,
+				E515B5E01963699F00CB0997 /* player_ship.png */,
+				E50340EC1973082D00A3C131 /* one_bullet.png */,
+				E515B5E21963699F00CB0997 /* farback.gif */,
+				E51E1312196A270500E46821 /* FireButtonPlaceHolder.png */,
+				E51E1318196B846800E46821 /* bossBullet2.png */,
+				E528349E19919BFB009000CD /* redbossbullet.png */,
+				E528349919919BCB009000CD /* redbossbullet2.png */,
+				E528349A19919BCB009000CD /* redbossbullet3.png */,
+				E51E131A196B859300E46821 /* boss1.png */,
+				E54F16DB197092F500C679D3 /* f2.png */,
+				E54F16DC197092F500C679D3 /* f3.png */,
+				E54F16DD197092F500C679D3 /* f4.png */,
+				E54F16DE197092F500C679D3 /* f5.png */,
+				E54F16DF197092F500C679D3 /* f6.png */,
+				E54F16ED1970C8A900C679D3 /* beam5.png */,
+				E54F16EE1970C8A900C679D3 /* beam6.png */,
+				E54F16F51970CD4500C679D3 /* beam7.png */,
+				E54F16F61970CD4500C679D3 /* beam8.png */,
+				E54F16F91970E17300C679D3 /* boss2.png */,
+				E50340EE19730C7900A3C131 /* Bar.png */,
+				E50340F819731F1000A3C131 /* barOutline.png */,
 				E515B5C31963698500CB0997 /* Images.xcassets */,
 				E515B5AA1963698500CB0997 /* Supporting Files */,
 			);
@@ -243,11 +335,40 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E54F16E1197092F500C679D3 /* f3.png in Resources */,
+				E56476F819A19DFF00C96730 /* DownArrow.png in Resources */,
+				E528349C19919BCB009000CD /* redbossbullet2.png in Resources */,
+				E515B5E31963699F00CB0997 /* player_ship.png in Resources */,
+				E56476FB19A19DFF00C96730 /* UpArrow.png in Resources */,
+				E515B5E51963699F00CB0997 /* farback.gif in Resources */,
+				E50E160A199D919200F007C1 /* EXPLOSION.atlas in Resources */,
 				E515B5C21963698500CB0997 /* Spaceship.png in Resources */,
+				E50340F919731F1000A3C131 /* barOutline.png in Resources */,
+				E51E1319196B846800E46821 /* bossBullet2.png in Resources */,
+				E54F16E4197092F500C679D3 /* f6.png in Resources */,
+				E54F16E3197092F500C679D3 /* f5.png in Resources */,
+				E54F16E0197092F500C679D3 /* f2.png in Resources */,
 				E515B5C41963698500CB0997 /* Images.xcassets in Resources */,
+				E5A36869199AF6BF00617404 /* enemyShip1.png in Resources */,
+				E50340ED1973082D00A3C131 /* one_bullet.png in Resources */,
+				E528349F19919BFB009000CD /* redbossbullet.png in Resources */,
+				E54F16F01970C8A900C679D3 /* beam6.png in Resources */,
+				E56476FA19A19DFF00C96730 /* RightArrow.png in Resources */,
+				E56476F219A1952700C96730 /* enemyShip3.png in Resources */,
+				E54F16F71970CD4500C679D3 /* beam7.png in Resources */,
+				E54F16EF1970C8A900C679D3 /* beam5.png in Resources */,
 				E515B5BA1963698500CB0997 /* Main_iPad.storyboard in Resources */,
+				E51E1313196A270500E46821 /* FireButtonPlaceHolder.png in Resources */,
+				E56476F919A19DFF00C96730 /* LeftArrow.png in Resources */,
 				E515B5B71963698500CB0997 /* Main_iPhone.storyboard in Resources */,
+				E51E131B196B859300E46821 /* boss1.png in Resources */,
+				E56476F319A1952700C96730 /* enemyShip4.png in Resources */,
+				E54F16FA1970E17300C679D3 /* boss2.png in Resources */,
+				E54F16F81970CD4500C679D3 /* beam8.png in Resources */,
+				E50340F019730C7900A3C131 /* Bar.png in Resources */,
+				E528349D19919BCB009000CD /* redbossbullet3.png in Resources */,
 				E515B5AE1963698500CB0997 /* InfoPlist.strings in Resources */,
+				E54F16E2197092F500C679D3 /* f4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +390,7 @@
 				E515B5C01963698500CB0997 /* MyScene.m in Sources */,
 				E515B5BD1963698500CB0997 /* ViewController.m in Sources */,
 				E515B5B41963698500CB0997 /* AppDelegate.m in Sources */,
+				E515B5E819636A3C00CB0997 /* NewScene.m in Sources */,
 				E515B5B01963698500CB0997 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,6 +608,7 @@
 				E515B5DC1963698500CB0997 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E515B5DD1963698500CB0997 /* Build configuration list for PBXNativeTarget "SpaceGameTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +617,7 @@
 				E515B5DF1963698500CB0997 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
