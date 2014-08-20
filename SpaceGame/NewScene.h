@@ -10,6 +10,10 @@
 
 static const uint8_t bulletCategory = 1;
 static const uint8_t enemyCategory = 2;
+static const uint8_t shipCategory = 3;
+static const uint8_t bossCategory = 4;
+static const uint8_t bossbulletCategory = 5;
+static const uint8_t bossbeamCategory = 6;
 
 @interface NewScene : SKScene <SKPhysicsContactDelegate> {
     CGRect screenRect;
@@ -17,6 +21,9 @@ static const uint8_t enemyCategory = 2;
     CGFloat screenWidth;
     int count;
     
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    bool invincibleWhenDamaged;
+    int lives;
 }
 @property SKSpriteNode *upbutton, *downbutton, *rightbutton, *leftbutton;
 @property NSMutableArray *explosionTextures;

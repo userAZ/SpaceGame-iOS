@@ -52,8 +52,13 @@
         _ship.scale = 1;
         _ship.zPosition = 2;
         _ship.position = CGPointMake(screenWidth/10, screenHeight/2);
+        _ship.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_ship.size];
+        _ship.physicsBody.categoryBitMask = shipCategory;
+        _ship.physicsBody.contactTestBitMask = enemyCategory;
+        //_ship.physicsBody.collisionBitMask = 0;
         [self addChild:_ship];
         
+        [self makeMovementButtons];
         /*
         SKAction *blink = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.1],
                                                [SKAction fadeInWithDuration:0.1]]];
@@ -566,87 +571,57 @@
     return (int)from + arc4random_uniform(to-from+1);
 }
 
+-(void)makeMovementButtons {
+    _upbutton = [SKSpriteNode spriteNodeWithImageNamed:@"UpArrow.png"];
+    _upbutton.scale = 0.1;
+    _upbutton.zPosition = 2;
+    _upbutton.position = CGPointMake(screenWidth/10, screenHeight/10);
+    _upbutton.name = @"upbutton";
+    [self addChild:_upbutton];
+    
+    _downbutton = [SKSpriteNode spriteNodeWithImageNamed:@"DownArrow.png"];
+    _downbutton.scale = 0.1;
+    _downbutton.zPosition = 2;
+    _downbutton.position = CGPointMake(screenWidth/10, screenHeight/10-20); // 20 pts below up button
+    _downbutton.name = @"downbutton";
+    [self addChild:_downbutton];
+    
+    _rightbutton = [SKSpriteNode spriteNodeWithImageNamed:@"RightArrow.png"];
+    _rightbutton.scale = 0.1;
+    _rightbutton.zPosition = 2;
+    _rightbutton.position = CGPointMake(screenWidth/10+20, screenHeight/10-10);
+    _rightbutton.name = @"rightbutton";
+    [self addChild:_rightbutton];
+    
+    _leftbutton = [SKSpriteNode spriteNodeWithImageNamed:@"LeftArrow.png"];
+    _leftbutton.scale = 0.1;
+    _leftbutton.zPosition = 2;
+    _leftbutton.position = CGPointMake(screenWidth/10-20, screenHeight/10-10);
+    _leftbutton.name = @"leftbutton";
+    [self addChild:_leftbutton];
+}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
     UITouch *touch = [touches anyObject];
-    CGPoint touchLocation = [touch locationInNode:self];
-    SKNode *node = [self nodeAtPoint:touchLocation];
+    CGPoint touchlocation = [touch locationInNode:self];
+    SKNode *node = [self nodeAtPoint:touchlocation];
     
-    
-    
-    if ([node.name isEqual:@"movement"]) {
-        /*
-        CGPoint diff = [self CGPointSubtract:_movePad.position from:touchLocation];
-        
-        float angle = atan2f(diff.x, diff.y);
-        
-        float newXmoveUsingHeight = (screenHeight-_ship.position.y)/tan(angle) + _ship.position.x;
-        float newYmoveUsingWidth = (screenWidth-_ship.position.x)*tan(angle) + _ship.position.y;
-        
-        if (newXmoveUsingHeight < screenWidth) {
-            float duration = sqrtf(powf(screenHeight - _ship.position.y,2.0) + pow(newXmoveUsingHeight-_ship.position.x,2.0))*0.01;
-            SKAction *move = [SKAction moveTo:CGPointMake(newXmoveUsingHeight, screenHeight) duration:duration];
-            
-            [_ship runAction:move];
-        } else if (newYmoveUsingWidth < screenHeight) {
-            float duration = sqrtf(powf(newYmoveUsingWidth-_ship.position.y,2.0) + pow(screenWidth-_ship.position.x,2.0))*0.01;
-            SKAction *move = [SKAction moveTo:CGPointMake(screenWidth, newYmoveUsingWidth) duration:duration];
-            
-            [_ship runAction:move];
-        }
-        */
-        
-        /*
-        float Xtouch = touchLocation.x;
-        float Ytouch = touchLocation.y;
-         
-        float angle = atan(Ytouch-_movePad.position.y)/(Xtouch-_movePad.position.x);
-        NSLog(@"angle %f",angle);
-        float opp = screenHeight-_ship.position.y;
-        float adj = screenWidth-_ship.position.x;
-        
-        // check if new width part is greater than the screen width
-        if ((opp)/tan(angle)+_ship.position.x>screenWidth) {
-            SKAction *movement = [SKAction moveTo:CGPointMake(screenWidth, tan(angle)*(adj)+_ship.position.y) duration:(adj)*tan(angle)*0.01];
-            //SKAction *remove = [SKAction removeFromParent];
-            
-            [_ship runAction:movement];
-            // check if new height is greater than curr height
-        } else if ((adj)*tan(angle)+_ship.position.y > screenHeight) {
-            SKAction *movement = [SKAction moveTo:CGPointMake((opp)*tan(angle)+_ship.position.x, screenHeight) duration:(opp)/tan(angle)*0.01];
-            //SKAction *remove = [SKAction removeFromParent];
-            
-            [_ship runAction:movement];
-        }
-        */
-    } else if ([node.name isEqual:@"background"]) {
-        CGPoint location = [_ship position];
-        
-        SKSpriteNode *bullet = [SKSpriteNode spriteNodeWithImageNamed:@"one_bullet.png"];
-        bullet.position = CGPointMake(location.x,location.y);
-        bullet.zPosition = 1;
-        bullet.scale = 0.8;
-        
-        bullet.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:bullet.size];
-        bullet.physicsBody.dynamic = NO;
-        bullet.physicsBody.categoryBitMask = bulletCategory;
-        bullet.physicsBody.contactTestBitMask = enemyCategory;
-        bullet.physicsBody.collisionBitMask = 0;
-        
-        // get distance bullet must travel
-        double distance = sqrt(pow(screenWidth-location.x, 2.0) + pow(screenHeight - location.y, 2.0));
-        
-        // get the duration of bullet travel
-        float moveDuration = 0.001*distance;
-        
-        SKAction *action = [SKAction moveToX:self.frame.size.width+bullet.size.width duration:moveDuration];
-        SKAction *remove = [SKAction removeFromParent];
-        
-        [bullet runAction:[SKAction sequence:@[action,remove]]];
-        
-        [self addChild:bullet];
+    // These are for movement controls and shooting control
+    // Remember can use: [SKAction waitForDuration:0], if I need to make a delay
+    if ([node.name  isEqual: @"upbutton"]) {
+        [self moveUp];
+    } else if ([node.name isEqual: @"rightbutton"]) {
+        [self moveRight];
+    } else if ([node.name isEqual: @"downbutton"]) {
+        [self moveDown];
+    } else if ([node.name isEqual: @"leftbutton"]) {
+        [self moveLeft];
+    } else /*if ([node.name isEqual:@"background"])*/ {
+        [self shootBullet];
     }
+    // ADD IN IF STATEMENT WHERE IF THE TOUCHED NODE IS THE BACKGROUND THEN SHOOT, OR ADD A BUTTON FOR IT
     
     /*
      for (UITouch *touch in touches) {
@@ -665,6 +640,64 @@
      */
 }
 
+-(void)shootBullet {
+    CGPoint location = [_ship position];
+    
+    SKSpriteNode *bullet = [SKSpriteNode spriteNodeWithImageNamed:@"one_bullet.png"];
+    bullet.position = CGPointMake(location.x + _ship.size.width/2 + bullet.size.width/2,location.y);
+    bullet.zPosition = 1;
+    bullet.scale = 0.8;
+    
+    
+     bullet.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:bullet.size];
+     bullet.physicsBody.dynamic = NO;
+     bullet.physicsBody.categoryBitMask = bulletCategory;
+     bullet.physicsBody.contactTestBitMask = enemyCategory;
+     bullet.physicsBody.collisionBitMask = 0;
+     
+    
+    // get distance bullet must travel
+    double distance = sqrt(pow(screenWidth-location.x, 2.0) + pow(screenHeight - location.y, 2.0));
+    
+    // get the duration of bullet travel
+    float moveDuration = 0.001*distance;
+    
+    SKAction *action = [SKAction moveToX:self.frame.size.width+bullet.size.width duration:moveDuration];
+    SKAction *remove = [SKAction removeFromParent];
+    
+    [bullet runAction:[SKAction sequence:@[action,remove]]];
+    
+    [self addChild:bullet];
+}
+
+-(void)moveLeft {
+    if (_ship.position.x != 0) {
+        SKAction *moveLeft = [SKAction moveToX:0 duration:0.01*(_ship.position.x)];
+        [self.ship runAction:[SKAction repeatActionForever:[SKAction sequence:@[moveLeft]]]];
+    }
+}
+
+-(void)moveDown {
+    if (_ship.position.y != 0) {
+        SKAction *moveDown = [SKAction moveToY:0 duration:0.01*(_ship.position.y)];
+        [self.ship runAction:[SKAction repeatActionForever:[SKAction sequence:@[moveDown]]]];
+    }
+}
+
+-(void)moveRight {
+    if (_ship.position.x != screenWidth) {
+        SKAction *moveRight = [SKAction moveToX:screenWidth duration:0.01*(screenWidth-_ship.position.x)];
+        [self.ship runAction:[SKAction repeatActionForever:[SKAction sequence:@[moveRight]]]];
+    }
+}
+
+-(void)moveUp {
+    if (_ship.position.y != screenHeight) {
+        SKAction *moveUp = [SKAction moveToY:screenHeight duration:0.01*(screenHeight-_ship.position.y)];
+        [self.ship runAction:[SKAction repeatActionForever:[SKAction sequence:@[moveUp]]]];
+    }
+}
+
 -(void)didBeginContact:(SKPhysicsContact *)contact{
     
     SKPhysicsBody *firstBody;
@@ -673,7 +706,8 @@
     firstBody = contact.bodyA;
     secondBody = contact.bodyB;
     
-    if ((firstBody.categoryBitMask & bulletCategory) != 0 && (secondBody.categoryBitMask & enemyCategory) != 0) {
+    if (firstBody.categoryBitMask == bulletCategory && secondBody.categoryBitMask == enemyCategory)
+    {
         SKNode *projectile = (SKNode *)[firstBody node];
         SKNode *enemy = (SKNode *)[secondBody node];
         
@@ -692,7 +726,9 @@
         SKAction *remove = [SKAction removeFromParent];
         [explosion runAction:[SKAction sequence:@[explosionAction,remove]]];
         
-    } else if ((secondBody.categoryBitMask & bulletCategory) != 0 && (firstBody.categoryBitMask & enemyCategory) != 0) {
+    }
+    else if (secondBody.categoryBitMask == bulletCategory && firstBody.categoryBitMask == enemyCategory)
+    {
         SKNode *projectile = (SKNode *)[secondBody node];
         SKNode *enemy = (SKNode *)[firstBody node];
         
@@ -712,7 +748,59 @@
         [explosion runAction:[SKAction sequence:@[explosionAction,remove]]];
         
     }
+    else if (firstBody.categoryBitMask == shipCategory && secondBody.categoryBitMask == enemyCategory)
+    {
+        //SKNode *ship = (SKNode *)[firstBody node];
+        SKNode *enemy = (SKNode *)[secondBody node];
         
+        //[ship runAction:[SKAction removeFromParent]];
+        SKAction *blink = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.1],
+                                               [SKAction fadeInWithDuration:0.1]]];
+        SKAction *blinkForTime = [SKAction repeatAction:blink count:4];
+        [_ship runAction:blinkForTime];
+        
+        [enemy runAction:[SKAction removeFromParent]];
+        
+        //add explosion
+        SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithTexture:[_explosionTextures objectAtIndex:0]];
+        explosion.zPosition = 1;
+        explosion.scale = 0.6;
+        explosion.position = contact.bodyB.node.position;
+        
+        [self addChild:explosion];
+        
+        SKAction *explosionAction = [SKAction animateWithTextures:_explosionTextures timePerFrame:0.07];
+        SKAction *remove = [SKAction removeFromParent];
+        [explosion runAction:[SKAction sequence:@[explosionAction,remove]]];
+        
+    }
+    else if (secondBody.categoryBitMask == enemyCategory && firstBody.categoryBitMask == shipCategory)
+    {
+        //SKNode *ship = (SKNode *)[secondBody node];
+        SKNode *enemy = (SKNode *)[firstBody node];
+        
+        //[ship runAction:[SKAction removeFromParent]];
+        SKAction *blink = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.1],
+                                               [SKAction fadeInWithDuration:0.1]]];
+        SKAction *blinkForTime = [SKAction repeatAction:blink count:4];
+        [_ship runAction:blinkForTime];
+        
+        [enemy runAction:[SKAction removeFromParent]];
+        
+        //add explosion
+        SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithTexture:[_explosionTextures objectAtIndex:0]];
+        explosion.zPosition = 1;
+        explosion.scale = 0.6;
+        explosion.position = contact.bodyA.node.position;
+        
+        [self addChild:explosion];
+        
+        SKAction *explosionAction = [SKAction animateWithTextures:_explosionTextures timePerFrame:0.07];
+        SKAction *remove = [SKAction removeFromParent];
+        [explosion runAction:[SKAction sequence:@[explosionAction,remove]]];
+        
+    }
+      
     
     /*
     if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask)
