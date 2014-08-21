@@ -691,28 +691,28 @@
 -(void)moveLeft {
     if (_ship.position.x != 0) {
         SKAction *moveLeft = [SKAction moveToX:0 duration:0.01*(_ship.position.x)];
-        [self.ship runAction:[SKAction repeatActionForever:[SKAction sequence:@[moveLeft]]]];
+        [self.ship runAction:[SKAction repeatActionForever:[SKAction sequence:@[moveLeft]]] withKey:@"movement"];
     }
 }
 
 -(void)moveDown {
     if (_ship.position.y != 0) {
         SKAction *moveDown = [SKAction moveToY:0 duration:0.01*(_ship.position.y)];
-        [self.ship runAction:[SKAction repeatActionForever:[SKAction sequence:@[moveDown]]]];
+        [self.ship runAction:[SKAction repeatActionForever:[SKAction sequence:@[moveDown]]] withKey:@"movement"];
     }
 }
 
 -(void)moveRight {
     if (_ship.position.x != screenWidth) {
         SKAction *moveRight = [SKAction moveToX:screenWidth duration:0.01*(screenWidth-_ship.position.x)];
-        [self.ship runAction:[SKAction repeatActionForever:[SKAction sequence:@[moveRight]]]];
+        [self.ship runAction:[SKAction repeatActionForever:[SKAction sequence:@[moveRight]]] withKey:@"movement"];
     }
 }
 
 -(void)moveUp {
     if (_ship.position.y != screenHeight) {
         SKAction *moveUp = [SKAction moveToY:screenHeight duration:0.01*(screenHeight-_ship.position.y)];
-        [self.ship runAction:[SKAction repeatActionForever:[SKAction sequence:@[moveUp]]]];
+        [self.ship runAction:[SKAction repeatActionForever:[SKAction sequence:@[moveUp]]] withKey:@"movement"];
     }
 }
 
@@ -744,6 +744,9 @@
         SKAction *remove = [SKAction removeFromParent];
         [explosion runAction:[SKAction sequence:@[explosionAction,remove]]];
         
+        // update score, add 10 pts
+        score += 10;
+        scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d", score];
     }
     else if (secondBody.categoryBitMask == bulletCategory && firstBody.categoryBitMask == enemyCategory)
     {
@@ -765,19 +768,20 @@
         SKAction *remove = [SKAction removeFromParent];
         [explosion runAction:[SKAction sequence:@[explosionAction,remove]]];
         
+        // update score, add 10 pts
+        score += 10;
+        scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d", score];
     }
     else if (firstBody.categoryBitMask == shipCategory && secondBody.categoryBitMask == enemyCategory)
     {
         if (invincibleWhenDamaged == false) {
             SKNode *enemy = (SKNode *)[secondBody node];
             
-            // get the ship to blink and be invincible
-            SKAction *blink = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.05],
-                                                   [SKAction fadeInWithDuration:0.05]]];
-            SKAction *blinkForTime = [SKAction repeatAction:blink count:2];
+            SKAction *blink = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.1],
+                                                   [SKAction fadeInWithDuration:0.1]]];
+            SKAction *blinkForTime = [SKAction repeatAction:blink count:4];
             
             [_ship runAction:blinkForTime];
-            
             
             [enemy runAction:[SKAction removeFromParent]];
             
@@ -820,8 +824,8 @@
             SKNode *enemy = (SKNode *)[firstBody node];
             
             // get the ship to blink and be invincible
-            SKAction *blink = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.05],
-                                                   [SKAction fadeInWithDuration:0.05]]];
+            SKAction *blink = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.1],
+                                                   [SKAction fadeInWithDuration:0.1]]];
             SKAction *blinkForTime = [SKAction repeatAction:blink count:4];
             
             [_ship runAction:blinkForTime];
@@ -862,39 +866,7 @@
         }    }
     
     
-    /*
-    if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask)
-    {
-        firstBody = contact.bodyA;
-        secondBody = contact.bodyB;
-    }
-    else
-    {
-        firstBody = contact.bodyB;
-        secondBody = contact.bodyA;
-    }
     
-    if ((firstBody.categoryBitMask & bulletCategory) != 0)
-    {
-        
-        SKNode *projectile = (contact.bodyA.categoryBitMask & bulletCategory) ? contact.bodyA.node : contact.bodyB.node;
-        SKNode *enemy = (contact.bodyA.categoryBitMask & bulletCategory) ? contact.bodyB.node : contact.bodyA.node;
-        [projectile runAction:[SKAction removeFromParent]];
-        [enemy runAction:[SKAction removeFromParent]];
-        
-        //add explosion
-        SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithTexture:[_explosionTextures objectAtIndex:0]];
-        explosion.zPosition = 1;
-        explosion.scale = 0.6;
-        explosion.position = contact.bodyA.node.position;
-        
-        [self addChild:explosion];
-        
-        SKAction *explosionAction = [SKAction animateWithTextures:_explosionTextures timePerFrame:0.07];
-        SKAction *remove = [SKAction removeFromParent];
-        [explosion runAction:[SKAction sequence:@[explosionAction,remove]]];
-    }
-    */
 }
 
 -(void)addExplosionAtLocation:(CGPoint)location {
@@ -920,7 +892,7 @@
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self.ship removeAllActions];
+    [self.ship removeActionForKey:@"movement"];
 }
 
 -(void)update:(CFTimeInterval)currentTime {
