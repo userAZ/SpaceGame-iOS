@@ -22,8 +22,11 @@ static const uint8_t bossbeamCategory = 6;
     int count;
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////
+    // stuff to add in
     bool invincibleWhenDamaged;
     int lives;
+    int score;
+    SKLabelNode *livesLabel, *scoreLabel;
 }
 @property SKSpriteNode *upbutton, *downbutton, *rightbutton, *leftbutton;
 @property NSMutableArray *explosionTextures;

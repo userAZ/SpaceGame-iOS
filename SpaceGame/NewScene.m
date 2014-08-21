@@ -7,7 +7,7 @@
 //
 
 #import "NewScene.h"
-
+#import "MyScene.h"
 @implementation NewScene
 
 -(id)initWithSize:(CGSize)size {
@@ -19,6 +19,8 @@
         
         //self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
         
+        invincibleWhenDamaged = false;
+        
         screenRect = [[UIScreen mainScreen] bounds];
         screenHeight = screenRect.size.width;
         screenWidth = screenRect.size.height;
@@ -26,6 +28,8 @@
         NSLog(@"screen Width: %f", screenWidth);
         
         count = 0;
+        score = 0;
+        lives = 999;
         
         SKTextureAtlas *explosionAtlas = [SKTextureAtlas atlasNamed:@"EXPLOSION"];
         NSArray *textureNames = [explosionAtlas textureNames];
@@ -46,6 +50,20 @@
         _bg2.position = CGPointMake(_bg1.size.width-1, 0);
         _bg2.name = @"background";
         [self addChild:_bg2];
+        
+        scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
+        scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d",score];
+        scoreLabel.fontSize = 20;
+        scoreLabel.position = CGPointMake(screenWidth*3/4,screenHeight*0.925);
+        scoreLabel.name = @"scoreLabel";
+        [self addChild:scoreLabel];
+        
+        livesLabel = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
+        livesLabel.text = [NSString stringWithFormat:@"LIVES: %d",lives];
+        livesLabel.fontSize = 20;
+        livesLabel.position = CGPointMake(screenWidth/4,screenHeight*0.925);
+        livesLabel.name = @"livesLabel";
+        [self addChild:livesLabel];
         
         //adding the airplane
         _ship = [SKSpriteNode spriteNodeWithImageNamed:@"player_ship.png"];
@@ -70,8 +88,8 @@
         //[self sayBoss];
         //[self makeBoss];
         //[self makeEnemies];
-        [self enemy1AtPoint:screenHeight/2];
-        //[self scheduleBattle];
+        //[self enemy1AtPoint:screenHeight/2];
+        [self scheduleBattle];
     }
     return self;
 }
@@ -203,7 +221,7 @@
     
     
     enemy.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:enemy.size];
-    enemy.physicsBody.dynamic = NO;                        // means can be moved by the physics
+    enemy.physicsBody.dynamic = YES;                        // means can be moved by the physics
     enemy.physicsBody.categoryBitMask = enemyCategory;
     enemy.physicsBody.contactTestBitMask = bulletCategory;
     enemy.physicsBody.collisionBitMask = 0;
@@ -253,7 +271,7 @@
     
     
     enemy.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:enemy.size];
-    enemy.physicsBody.dynamic = NO;                        // means can be moved by the physics
+    enemy.physicsBody.dynamic = YES;                        // means can be moved by the physics
     enemy.physicsBody.categoryBitMask = enemyCategory;
     enemy.physicsBody.contactTestBitMask = bulletCategory;
     enemy.physicsBody.collisionBitMask = 0;
@@ -306,14 +324,14 @@
     progressBar.position = CGPointMake(screenWidth/2, screenHeight*0.90);
     progressBar.name = @"progressBar";
     progressBar.alpha *= 0.5;
-    progressBar.yScale *= 0.75;
+    progressBar.yScale *= 0.5;
     [self addChild:progressBar];
     
     SKAction *progress = [SKAction runBlock:^{
         SKSpriteNode *Bar = [SKSpriteNode spriteNodeWithImageNamed:@"Bar.png"];
         Bar.zPosition = 3;
-        Bar.alpha *= 0.5;
-        Bar.yScale *= 0.75;
+        Bar.alpha *= 0.75;
+        Bar.yScale *= 0.5;
         Bar.position = progressBar.position;
         Bar.name = @"Bar";
         Bar.xScale = count * 0.05;
@@ -750,57 +768,99 @@
     }
     else if (firstBody.categoryBitMask == shipCategory && secondBody.categoryBitMask == enemyCategory)
     {
-        //SKNode *ship = (SKNode *)[firstBody node];
-        SKNode *enemy = (SKNode *)[secondBody node];
-        
-        //[ship runAction:[SKAction removeFromParent]];
-        SKAction *blink = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.1],
-                                               [SKAction fadeInWithDuration:0.1]]];
-        SKAction *blinkForTime = [SKAction repeatAction:blink count:4];
-        [_ship runAction:blinkForTime];
-        
-        [enemy runAction:[SKAction removeFromParent]];
-        
-        //add explosion
-        SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithTexture:[_explosionTextures objectAtIndex:0]];
-        explosion.zPosition = 1;
-        explosion.scale = 0.6;
-        explosion.position = contact.bodyB.node.position;
-        
-        [self addChild:explosion];
-        
-        SKAction *explosionAction = [SKAction animateWithTextures:_explosionTextures timePerFrame:0.07];
-        SKAction *remove = [SKAction removeFromParent];
-        [explosion runAction:[SKAction sequence:@[explosionAction,remove]]];
-        
+        if (invincibleWhenDamaged == false) {
+            SKNode *enemy = (SKNode *)[secondBody node];
+            
+            // get the ship to blink and be invincible
+            SKAction *blink = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.05],
+                                                   [SKAction fadeInWithDuration:0.05]]];
+            SKAction *blinkForTime = [SKAction repeatAction:blink count:2];
+            
+            [_ship runAction:blinkForTime];
+            
+            
+            [enemy runAction:[SKAction removeFromParent]];
+            
+            //add explosion
+            [self addExplosionAtLocation:contact.bodyB.node.position];
+            
+            // take away life. if none, lose
+            if (lives > 0) {
+                lives -= 1;
+                livesLabel.text = [NSString stringWithFormat:@"LIVES: %d",lives];
+            } else {
+                // write in code for lose, so words saying game over and return to title screen button
+                SKNode *player = (SKNode *)[firstBody node];
+                [player runAction:[SKAction removeFromParent]];
+                [self addExplosionAtLocation:contact.bodyA.node.position];
+                
+                SKLabelNode *loseLabel = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
+                loseLabel.text = @"GAME OVER";
+                loseLabel.fontSize = 42;
+                loseLabel.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
+                loseLabel.name = @"gameoverLabel";
+                [self addChild:loseLabel];
+                
+                SKAction *wait = [SKAction waitForDuration:1];
+                SKAction *moveUp = [SKAction moveToY:screenHeight + 50 duration:0.01*(screenHeight+50-screenHeight/2)];
+                SKAction *remove = [SKAction removeFromParent];
+                SKAction *moveSequence = [SKAction sequence:@[wait, moveUp, remove]];
+                
+                [loseLabel runAction:moveSequence completion:^{
+                    SKScene *NewScene  = [[MyScene alloc] initWithSize:self.size];
+                    SKTransition *doors = [SKTransition doorsOpenVerticalWithDuration:0.5];
+                    [self.view presentScene:NewScene transition:doors];
+                }];
+            }
+        }
     }
     else if (secondBody.categoryBitMask == enemyCategory && firstBody.categoryBitMask == shipCategory)
     {
-        //SKNode *ship = (SKNode *)[secondBody node];
-        SKNode *enemy = (SKNode *)[firstBody node];
-        
-        //[ship runAction:[SKAction removeFromParent]];
-        SKAction *blink = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.1],
-                                               [SKAction fadeInWithDuration:0.1]]];
-        SKAction *blinkForTime = [SKAction repeatAction:blink count:4];
-        [_ship runAction:blinkForTime];
-        
-        [enemy runAction:[SKAction removeFromParent]];
-        
-        //add explosion
-        SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithTexture:[_explosionTextures objectAtIndex:0]];
-        explosion.zPosition = 1;
-        explosion.scale = 0.6;
-        explosion.position = contact.bodyA.node.position;
-        
-        [self addChild:explosion];
-        
-        SKAction *explosionAction = [SKAction animateWithTextures:_explosionTextures timePerFrame:0.07];
-        SKAction *remove = [SKAction removeFromParent];
-        [explosion runAction:[SKAction sequence:@[explosionAction,remove]]];
-        
-    }
-      
+        if (invincibleWhenDamaged == false) {
+            SKNode *enemy = (SKNode *)[firstBody node];
+            
+            // get the ship to blink and be invincible
+            SKAction *blink = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.05],
+                                                   [SKAction fadeInWithDuration:0.05]]];
+            SKAction *blinkForTime = [SKAction repeatAction:blink count:4];
+            
+            [_ship runAction:blinkForTime];
+            
+            [enemy runAction:[SKAction removeFromParent]];
+            
+            //add explosion
+            [self addExplosionAtLocation:contact.bodyA.node.position];
+            
+            // take away life. if none, lose
+            if (lives > 0) {
+                lives -= 1;
+                livesLabel.text = [NSString stringWithFormat:@"LIVES: %d",lives];
+            } else {
+                // write in code for lose, so words saying game over and return to title screen button
+                SKNode *player = (SKNode *)[secondBody node];
+                [player runAction:[SKAction removeFromParent]];
+                [self addExplosionAtLocation:contact.bodyB.node.position];
+                
+                SKLabelNode *loseLabel = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
+                loseLabel.text = @"GAME OVER";
+                loseLabel.fontSize = 42;
+                loseLabel.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
+                loseLabel.name = @"gameoverLabel";
+                [self addChild:loseLabel];
+                
+                SKAction *wait = [SKAction waitForDuration:1];
+                SKAction *moveUp = [SKAction moveToY:screenHeight + 50 duration:0.01*(screenHeight+50-screenHeight/2)];
+                SKAction *remove = [SKAction removeFromParent];
+                SKAction *moveSequence = [SKAction sequence:@[wait, moveUp, remove]];
+                
+                [loseLabel runAction:moveSequence completion:^{
+                    SKScene *NewScene  = [[MyScene alloc] initWithSize:self.size];
+                    SKTransition *doors = [SKTransition doorsOpenVerticalWithDuration:0.5];
+                    [self.view presentScene:NewScene transition:doors];
+                }];
+            }
+        }    }
+    
     
     /*
     if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask)
@@ -835,6 +895,19 @@
         [explosion runAction:[SKAction sequence:@[explosionAction,remove]]];
     }
     */
+}
+
+-(void)addExplosionAtLocation:(CGPoint)location {
+    SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithTexture:[_explosionTextures objectAtIndex:0]];
+    explosion.zPosition = 1;
+    explosion.scale = 0.6;
+    explosion.position = location;
+    
+    [self addChild:explosion];
+    
+    SKAction *explosionAction = [SKAction animateWithTextures:_explosionTextures timePerFrame:0.07];
+    SKAction *remove = [SKAction removeFromParent];
+    [explosion runAction:[SKAction sequence:@[explosionAction,remove]]];
 }
 
 -(float)distBetween2Points:(CGPoint)point1 and: (CGPoint)point2 {
