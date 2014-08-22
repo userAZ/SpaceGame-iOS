@@ -27,6 +27,7 @@ static const uint8_t bossbeamCategory = 6;
     int lives;
     int score;
     SKLabelNode *livesLabel, *scoreLabel;
+    int bossHealth;
 }
 @property SKSpriteNode *upbutton, *downbutton, *rightbutton, *leftbutton;
 @property NSMutableArray *explosionTextures;
