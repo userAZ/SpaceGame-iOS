@@ -12,8 +12,6 @@ static const uint8_t bulletCategory = 1;
 static const uint8_t enemyCategory = 2;
 static const uint8_t shipCategory = 3;
 static const uint8_t bossCategory = 4;
-static const uint8_t bossbulletCategory = 5;
-static const uint8_t bossbeamCategory = 6;
 
 @interface NewScene : SKScene <SKPhysicsContactDelegate> {
     CGRect screenRect;
@@ -23,7 +21,6 @@ static const uint8_t bossbeamCategory = 6;
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // stuff to add in
-    bool invincibleWhenDamaged;
     int lives;
     int score;
     SKLabelNode *livesLabel, *scoreLabel;
