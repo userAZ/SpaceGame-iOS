@@ -55,6 +55,13 @@
 		E56476FA19A19DFF00C96730 /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E56476F619A19DFF00C96730 /* RightArrow.png */; };
 		E56476FB19A19DFF00C96730 /* UpArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E56476F719A19DFF00C96730 /* UpArrow.png */; };
 		E5A36869199AF6BF00617404 /* enemyShip1.png in Resources */ = {isa = PBXBuildFile; fileRef = E5A36868199AF6BF00617404 /* enemyShip1.png */; };
+		E5C7FF7619A99939002D1355 /* farbackIPAD.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C7FF7519A99939002D1355 /* farbackIPAD.png */; };
+		E5C7FF7819A999D1002D1355 /* backgroundEDIT.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C7FF7719A999D1002D1355 /* backgroundEDIT.png */; };
+		E5F2223819AAC587004A798F /* startSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F2223719AAC587004A798F /* startSound.mp3 */; };
+		E5F2223C19AB9372004A798F /* Laser_Shoot.wav in Resources */ = {isa = PBXBuildFile; fileRef = E5F2223919AB9372004A798F /* Laser_Shoot.wav */; };
+		E5F2223D19AB9372004A798F /* ExplosionBoss.wav in Resources */ = {isa = PBXBuildFile; fileRef = E5F2223A19AB9372004A798F /* ExplosionBoss.wav */; };
+		E5F2223E19AB9372004A798F /* Explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = E5F2223B19AB9372004A798F /* Explosion.wav */; };
+		E5F2224019AB953B004A798F /* Hit_Hurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = E5F2223F19AB953B004A798F /* Hit_Hurt.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +130,13 @@
 		E56476F619A19DFF00C96730 /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RightArrow.png; sourceTree = "<group>"; };
 		E56476F719A19DFF00C96730 /* UpArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UpArrow.png; sourceTree = "<group>"; };
 		E5A36868199AF6BF00617404 /* enemyShip1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemyShip1.png; sourceTree = "<group>"; };
+		E5C7FF7519A99939002D1355 /* farbackIPAD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = farbackIPAD.png; sourceTree = "<group>"; };
+		E5C7FF7719A999D1002D1355 /* backgroundEDIT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundEDIT.png; sourceTree = "<group>"; };
+		E5F2223719AAC587004A798F /* startSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = startSound.mp3; sourceTree = "<group>"; };
+		E5F2223919AB9372004A798F /* Laser_Shoot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Laser_Shoot.wav; sourceTree = "<group>"; };
+		E5F2223A19AB9372004A798F /* ExplosionBoss.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ExplosionBoss.wav; sourceTree = "<group>"; };
+		E5F2223B19AB9372004A798F /* Explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Explosion.wav; sourceTree = "<group>"; };
+		E5F2223F19AB953B004A798F /* Hit_Hurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Hit_Hurt.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +210,13 @@
 				E515B5E719636A3C00CB0997 /* NewScene.m */,
 				E50E1609199D919200F007C1 /* EXPLOSION.atlas */,
 				E5A36868199AF6BF00617404 /* enemyShip1.png */,
+				E5F2223F19AB953B004A798F /* Hit_Hurt.wav */,
+				E5F2223919AB9372004A798F /* Laser_Shoot.wav */,
+				E5F2223A19AB9372004A798F /* ExplosionBoss.wav */,
+				E5F2223B19AB9372004A798F /* Explosion.wav */,
+				E5F2223719AAC587004A798F /* startSound.mp3 */,
+				E5C7FF7719A999D1002D1355 /* backgroundEDIT.png */,
+				E5C7FF7519A99939002D1355 /* farbackIPAD.png */,
 				E56476F419A19DFF00C96730 /* DownArrow.png */,
 				E56476F519A19DFF00C96730 /* LeftArrow.png */,
 				E56476F619A19DFF00C96730 /* RightArrow.png */,
@@ -342,13 +363,18 @@
 				E56476FB19A19DFF00C96730 /* UpArrow.png in Resources */,
 				E515B5E51963699F00CB0997 /* farback.gif in Resources */,
 				E50E160A199D919200F007C1 /* EXPLOSION.atlas in Resources */,
+				E5F2223D19AB9372004A798F /* ExplosionBoss.wav in Resources */,
 				E515B5C21963698500CB0997 /* Spaceship.png in Resources */,
+				E5F2224019AB953B004A798F /* Hit_Hurt.wav in Resources */,
 				E50340F919731F1000A3C131 /* barOutline.png in Resources */,
 				E51E1319196B846800E46821 /* bossBullet2.png in Resources */,
+				E5F2223819AAC587004A798F /* startSound.mp3 in Resources */,
 				E54F16E4197092F500C679D3 /* f6.png in Resources */,
 				E54F16E3197092F500C679D3 /* f5.png in Resources */,
 				E54F16E0197092F500C679D3 /* f2.png in Resources */,
 				E515B5C41963698500CB0997 /* Images.xcassets in Resources */,
+				E5C7FF7619A99939002D1355 /* farbackIPAD.png in Resources */,
+				E5C7FF7819A999D1002D1355 /* backgroundEDIT.png in Resources */,
 				E5A36869199AF6BF00617404 /* enemyShip1.png in Resources */,
 				E50340ED1973082D00A3C131 /* one_bullet.png in Resources */,
 				E528349F19919BFB009000CD /* redbossbullet.png in Resources */,
@@ -360,10 +386,12 @@
 				E515B5BA1963698500CB0997 /* Main_iPad.storyboard in Resources */,
 				E51E1313196A270500E46821 /* FireButtonPlaceHolder.png in Resources */,
 				E56476F919A19DFF00C96730 /* LeftArrow.png in Resources */,
+				E5F2223C19AB9372004A798F /* Laser_Shoot.wav in Resources */,
 				E515B5B71963698500CB0997 /* Main_iPhone.storyboard in Resources */,
 				E51E131B196B859300E46821 /* boss1.png in Resources */,
 				E56476F319A1952700C96730 /* enemyShip4.png in Resources */,
 				E54F16FA1970E17300C679D3 /* boss2.png in Resources */,
+				E5F2223E19AB9372004A798F /* Explosion.wav in Resources */,
 				E54F16F81970CD4500C679D3 /* beam8.png in Resources */,
 				E50340F019730C7900A3C131 /* Bar.png in Resources */,
 				E528349D19919BCB009000CD /* redbossbullet3.png in Resources */,

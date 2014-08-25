@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 static const uint8_t bulletCategory = 1;
 static const uint8_t enemyCategory = 2;

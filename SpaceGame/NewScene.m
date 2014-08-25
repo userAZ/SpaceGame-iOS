@@ -17,17 +17,13 @@
         self.physicsWorld.gravity = CGVectorMake(0,0);
         self.physicsWorld.contactDelegate = self;
         
-        //self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
-        
         screenRect = [[UIScreen mainScreen] bounds];
         screenHeight = screenRect.size.width;
         screenWidth = screenRect.size.height;
-        NSLog(@"screen Height: %f", screenHeight);
-        NSLog(@"screen Width: %f", screenWidth);
         
         count = 0;
         score = 0;
-        lives = 999;
+        lives = 5;
         bossHealth = 0;
         
         SKTextureAtlas *explosionAtlas = [SKTextureAtlas atlasNamed:@"EXPLOSION"];
@@ -38,55 +34,29 @@
             [_explosionTextures addObject:texture];
         }
         
-        _bg1 = [SKSpriteNode spriteNodeWithImageNamed:@"farback.gif"];
-        _bg1.anchorPoint = CGPointZero;
-        _bg1.position = CGPointMake(0, 0);
-        _bg1.name = @"background";
-        [self addChild:_bg1];
-        
-        _bg2 = [SKSpriteNode spriteNodeWithImageNamed:@"farback.gif"];
-        _bg2.anchorPoint = CGPointZero;
-        _bg2.position = CGPointMake(_bg1.size.width-1, 0);
-        _bg2.name = @"background";
-        [self addChild:_bg2];
-        
-        scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
-        scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d",score];
-        scoreLabel.fontSize = 20;
-        scoreLabel.position = CGPointMake(screenWidth*3/4,screenHeight*0.925);
-        scoreLabel.name = @"scoreLabel";
-        [self addChild:scoreLabel];
-        
-        livesLabel = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
-        livesLabel.text = [NSString stringWithFormat:@"LIVES: %d",lives];
-        livesLabel.fontSize = 20;
-        livesLabel.position = CGPointMake(screenWidth/4,screenHeight*0.925);
-        livesLabel.name = @"livesLabel";
-        [self addChild:livesLabel];
-        
-        //adding the airplane
-        _ship = [SKSpriteNode spriteNodeWithImageNamed:@"player_ship.png"];
-        _ship.scale = 1;
-        _ship.zPosition = 2;
-        _ship.position = CGPointMake(screenWidth/10, screenHeight/2);
-        _ship.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_ship.size];
-        _ship.physicsBody.categoryBitMask = shipCategory;
-        _ship.physicsBody.contactTestBitMask = enemyCategory;
-        _ship.physicsBody.dynamic = YES;
-        //_ship.physicsBody.collisionBitMask = 0;
-        [self addChild:_ship];
-        
+        [self makeLabels];
+        [self addPlayerShip];
         [self makeMovementButtons];
-        
-        //[self BarProgress];
-        //[self sayBoss];
-        //[self makeBoss];
-        //[self makeEnemies];
-        //[self enemy1AtPoint:screenHeight/2];
         [self scheduleBattle];
         
     }
     return self;
+}
+
+-(void)makeLabels {
+    scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
+    scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d",score];
+    scoreLabel.fontSize = 20;
+    scoreLabel.position = CGPointMake(screenWidth*3/4,screenHeight*0.925);
+    scoreLabel.name = @"scoreLabel";
+    [self addChild:scoreLabel];
+    
+    livesLabel = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
+    livesLabel.text = [NSString stringWithFormat:@"LIVES: %d",lives];
+    livesLabel.fontSize = 20;
+    livesLabel.position = CGPointMake(screenWidth/4,screenHeight*0.925);
+    livesLabel.name = @"livesLabel";
+    [self addChild:livesLabel];
 }
 
 -(void)scheduleBattle {
@@ -643,23 +613,6 @@
     } else /*if ([node.name isEqual:@"background"])*/ {
         [self shootBullet];
     }
-    // ADD IN IF STATEMENT WHERE IF THE TOUCHED NODE IS THE BACKGROUND THEN SHOOT, OR ADD A BUTTON FOR IT
-    
-    /*
-     for (UITouch *touch in touches) {
-     CGPoint location = [touch locationInNode:self];
-     
-     SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-     
-     sprite.position = location;
-     
-     SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-     
-     [sprite runAction:[SKAction repeatActionForever:action]];
-     
-     [self addChild:sprite];
-     }
-     */
 }
 
 -(void)shootBullet {
@@ -690,6 +643,9 @@
     [bullet runAction:[SKAction sequence:@[action,remove]]];
     
     [self addChild:bullet];
+    
+    // play sound effect
+    [self runAction:[SKAction playSoundFileNamed:@"Laser_Shoot.wav" waitForCompletion:NO]];
 }
 
 -(void)moveLeft {
@@ -748,6 +704,9 @@
         SKAction *remove = [SKAction removeFromParent];
         [explosion runAction:[SKAction sequence:@[explosionAction,remove]]];
         
+        // play sfx
+        [self runAction:[SKAction playSoundFileNamed:@"Explosion.wav" waitForCompletion:NO]];
+        
         // update score, add 10 pts
         score += 10;
         scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d", score];
@@ -772,6 +731,9 @@
         SKAction *remove = [SKAction removeFromParent];
         [explosion runAction:[SKAction sequence:@[explosionAction,remove]]];
         
+        // play sfx
+        [self runAction:[SKAction playSoundFileNamed:@"Explosion.wav" waitForCompletion:NO]];
+        
         // update score, add 10 pts
         score += 10;
         scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d", score];
@@ -779,17 +741,236 @@
     else if (firstBody.categoryBitMask == shipCategory && secondBody.categoryBitMask == enemyCategory)
     {
         SKNode *enemy = (SKNode *)[secondBody node];
+        [enemy runAction:[SKAction removeFromParent]];
+        
+        // play sfx
+        [self runAction:[SKAction playSoundFileNamed:@"Explosion.wav" waitForCompletion:NO]];
         
         SKAction *blink = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.1],
                                                [SKAction fadeInWithDuration:0.1]]];
         SKAction *blinkForTime = [SKAction repeatAction:blink count:4];
-        
         [_ship runAction:blinkForTime];
         
-        [enemy runAction:[SKAction removeFromParent]];
+        // play sfx
+        [self runAction:[SKAction playSoundFileNamed:@"Hit_Hurt.wav" waitForCompletion:NO]];
         
         //add explosion
         [self addExplosionAtLocation:contact.bodyB.node.position];
+        
+        // take away life. if none, lose
+        if (lives > 0) {
+            lives -= 1;
+            livesLabel.text = [NSString stringWithFormat:@"LIVES: %d",lives];
+        } else {
+            // write in code for lose, so words saying game over and return to title screen button
+            SKNode *player = (SKNode *)[firstBody node];
+            [player runAction:[SKAction removeFromParent]];
+            [self addExplosionAtLocation:contact.bodyA.node.position];
+            
+            // play sfx
+            [self runAction:[SKAction playSoundFileNamed:@"ExplosionBoss.wav" waitForCompletion:NO]];
+            
+            // say game over
+            SKLabelNode *loseLabel = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
+            loseLabel.text = @"GAME OVER";
+            loseLabel.fontSize = 42;
+            loseLabel.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
+            loseLabel.name = @"gameoverLabel";
+            [self addChild:loseLabel];
+            
+            SKAction *wait = [SKAction waitForDuration:1];
+            SKAction *moveUp = [SKAction moveToY:screenHeight + 50 duration:0.01*(screenHeight+50-screenHeight/2)];
+            SKAction *remove = [SKAction removeFromParent];
+            SKAction *moveSequence = [SKAction sequence:@[wait, moveUp, remove]];
+            
+            [loseLabel runAction:moveSequence completion:^{
+                SKScene *NewScene  = [[MyScene alloc] initWithSize:self.size];
+                SKTransition *doors = [SKTransition doorsOpenVerticalWithDuration:0.5];
+                [self.view presentScene:NewScene transition:doors];
+            }];
+        }
+        
+    }
+    else if (secondBody.categoryBitMask == shipCategory && firstBody.categoryBitMask == enemyCategory)
+    {
+        SKNode *enemy = (SKNode *)[firstBody node];
+        [enemy runAction:[SKAction removeFromParent]];
+        
+        // play sfx
+        [self runAction:[SKAction playSoundFileNamed:@"Explosion.wav" waitForCompletion:NO]];
+        
+        // get the ship to blink
+        SKAction *blink = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.1],
+                                               [SKAction fadeInWithDuration:0.1]]];
+        SKAction *blinkForTime = [SKAction repeatAction:blink count:4];
+        [_ship runAction:blinkForTime];
+        
+        // play sfx
+        [self runAction:[SKAction playSoundFileNamed:@"Hit_Hurt.wav" waitForCompletion:NO]];
+        
+        //add explosion
+        [self addExplosionAtLocation:contact.bodyA.node.position];
+        
+        // take away life. if none, lose
+        if (lives > 0) {
+            lives -= 1;
+            livesLabel.text = [NSString stringWithFormat:@"LIVES: %d",lives];
+        } else {
+            // write in code for lose, so words saying game over and return to title screen button
+            SKNode *player = (SKNode *)[secondBody node];
+            [player runAction:[SKAction removeFromParent]];
+            [self addExplosionAtLocation:contact.bodyB.node.position];
+            
+            // play sfx
+            [self runAction:[SKAction playSoundFileNamed:@"ExplosionBoss.wav" waitForCompletion:NO]];
+            
+            // say game over
+            SKLabelNode *loseLabel = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
+            loseLabel.text = @"GAME OVER";
+            loseLabel.fontSize = 42;
+            loseLabel.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
+            loseLabel.name = @"gameoverLabel";
+            [self addChild:loseLabel];
+            
+            SKAction *wait = [SKAction waitForDuration:1];
+            SKAction *moveUp = [SKAction moveToY:screenHeight + 50 duration:0.01*(screenHeight+50-screenHeight/2)];
+            SKAction *remove = [SKAction removeFromParent];
+            SKAction *moveSequence = [SKAction sequence:@[wait, moveUp, remove]];
+            
+            [loseLabel runAction:moveSequence completion:^{
+                SKScene *NewScene  = [[MyScene alloc] initWithSize:self.size];
+                SKTransition *doors = [SKTransition doorsOpenVerticalWithDuration:0.5];
+                [self.view presentScene:NewScene transition:doors];
+            }];
+            
+        }
+    }
+    else if (firstBody.categoryBitMask == bossCategory && secondBody.categoryBitMask == bulletCategory)
+    {
+        SKNode *projectile = (SKNode *)[secondBody node];
+        [projectile runAction:[SKAction removeFromParent]];
+        
+        if (bossHealth > 0) {
+            bossHealth --;
+        } else {
+            // add points
+            score += 250;
+            scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d", score];
+            
+            //add explosion
+            SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithTexture:[_explosionTextures objectAtIndex:0]];
+            explosion.zPosition = 1;
+            explosion.scale = 1.5;
+            explosion.position = contact.bodyA.node.position;
+            
+            [self addChild:explosion];
+            
+            SKAction *explosionAction = [SKAction animateWithTextures:_explosionTextures timePerFrame:0.07];
+            SKAction *remove = [SKAction removeFromParent];
+            [explosion runAction:[SKAction sequence:@[explosionAction,remove]]];
+            
+            // play sfx
+            [self runAction:[SKAction playSoundFileNamed:@"ExplosionBoss.wav" waitForCompletion:NO]];
+            
+            // remove boss
+            SKNode *deadBoss = (SKNode *)[firstBody node];
+            [deadBoss runAction:[SKAction removeFromParent]];
+            
+            // announce next wave
+            SKLabelNode *waveLabel = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
+            waveLabel.text = @"Boss Defeated";
+            waveLabel.fontSize = 42;
+            waveLabel.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame)+20);
+            waveLabel.name = @"waveLabel";
+            [self addChild:waveLabel];
+            
+            SKLabelNode *waveLabel2 = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
+            waveLabel.text = @"Wave Incomming";
+            waveLabel.fontSize = 42;
+            waveLabel.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame)-20);
+            waveLabel.name = @"waveLabel";
+            [self addChild:waveLabel2];
+            
+            SKAction *wait = [SKAction waitForDuration:1];
+            SKAction *moveUp = [SKAction moveToY:screenHeight + 50 duration:0.01*(screenHeight+50-screenHeight/2)];
+            /*
+            SKAction *callEnemies = [SKAction runBlock:^{
+                [self scheduleBattle];
+            }];
+             */
+            SKAction *moveSequence = [SKAction sequence:@[wait, moveUp, remove]];
+            
+            [waveLabel runAction:moveSequence];
+            [waveLabel2 runAction:moveSequence];
+            
+            [self scheduleBattle];
+        }
+    }
+    else if (secondBody.categoryBitMask == bossCategory && firstBody.categoryBitMask == bulletCategory)
+    {
+        SKNode *projectile = (SKNode *)[firstBody node];
+        [projectile runAction:[SKAction removeFromParent]];
+        
+        if (bossHealth > 0) {
+            bossHealth --;
+        } else {
+            // add points
+            score += 250;
+            scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d", score];
+            
+            //add explosion
+            SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithTexture:[_explosionTextures objectAtIndex:0]];
+            explosion.zPosition = 1;
+            explosion.scale = 1.5;
+            explosion.position = contact.bodyB.node.position;
+            
+            [self addChild:explosion];
+            
+            SKAction *explosionAction = [SKAction animateWithTextures:_explosionTextures timePerFrame:0.07];
+            SKAction *remove = [SKAction removeFromParent];
+            [explosion runAction:[SKAction sequence:@[explosionAction,remove]]];
+            
+            // play sfx
+            [self runAction:[SKAction playSoundFileNamed:@"ExplosionBoss.wav" waitForCompletion:NO]];
+            
+            // remove boss
+            SKNode *deadBoss = (SKNode *)[secondBody node];
+            [deadBoss runAction:[SKAction removeFromParent]];
+            
+            // announce next wave
+            SKLabelNode *waveLabel = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
+            waveLabel.text = @"Boss Defeated\nWave Incomming";
+            waveLabel.fontSize = 42;
+            waveLabel.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame)+20);
+            waveLabel.name = @"waveLabel";
+            [self addChild:waveLabel];
+            
+            SKLabelNode *waveLabel2 = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
+            waveLabel.text = @"Wave Incomming";
+            waveLabel.fontSize = 42;
+            waveLabel.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame)-20);
+            waveLabel.name = @"waveLabel";
+            [self addChild:waveLabel2];
+            
+            SKAction *wait = [SKAction waitForDuration:1];
+            SKAction *moveUp = [SKAction moveToY:screenHeight + 50 duration:0.01*(screenHeight+50-screenHeight/2)];
+            SKAction *moveSequence = [SKAction sequence:@[wait, moveUp, remove]];
+            
+            [waveLabel runAction:moveSequence];
+            [waveLabel2 runAction:moveSequence];
+            
+            [self scheduleBattle];
+        }
+    }
+    else if (firstBody.categoryBitMask == shipCategory && secondBody.categoryBitMask == bossCategory)
+    {
+        SKAction *blink = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.1],
+                                               [SKAction fadeInWithDuration:0.1]]];
+        SKAction *blinkForTime = [SKAction repeatAction:blink count:4];
+        [_ship runAction:blinkForTime];
+        
+        // play sfx
+        [self runAction:[SKAction playSoundFileNamed:@"Hit_Hurt.wav" waitForCompletion:NO]];
         
         // take away life. if none, lose
         if (lives > 0) {
@@ -819,23 +1000,16 @@
                 [self.view presentScene:NewScene transition:doors];
             }];
         }
-        
     }
-    else if (secondBody.categoryBitMask == shipCategory && firstBody.categoryBitMask == enemyCategory)
+    else if (secondBody.categoryBitMask == shipCategory && firstBody.categoryBitMask == bossCategory)
     {
-        SKNode *enemy = (SKNode *)[firstBody node];
-        
-        // get the ship to blink and be invincible
         SKAction *blink = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.1],
                                                [SKAction fadeInWithDuration:0.1]]];
         SKAction *blinkForTime = [SKAction repeatAction:blink count:4];
-        
         [_ship runAction:blinkForTime];
         
-        [enemy runAction:[SKAction removeFromParent]];
-        
-        //add explosion
-        [self addExplosionAtLocation:contact.bodyA.node.position];
+        // play sfx
+        [self runAction:[SKAction playSoundFileNamed:@"Hit_Hurt.wav" waitForCompletion:NO]];
         
         // take away life. if none, lose
         if (lives > 0) {
@@ -843,9 +1017,9 @@
             livesLabel.text = [NSString stringWithFormat:@"LIVES: %d",lives];
         } else {
             // write in code for lose, so words saying game over and return to title screen button
-            SKNode *player = (SKNode *)[secondBody node];
+            SKNode *player = (SKNode *)[firstBody node];
             [player runAction:[SKAction removeFromParent]];
-            [self addExplosionAtLocation:contact.bodyB.node.position];
+            [self addExplosionAtLocation:contact.bodyA.node.position];
             
             SKLabelNode *loseLabel = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
             loseLabel.text = @"GAME OVER";
@@ -864,118 +1038,7 @@
                 SKTransition *doors = [SKTransition doorsOpenVerticalWithDuration:0.5];
                 [self.view presentScene:NewScene transition:doors];
             }];
-            
         }
-    }
-    else if (firstBody.categoryBitMask == bossCategory && secondBody.categoryBitMask == bulletCategory)
-    {
-        SKNode *projectile = (SKNode *)[secondBody node];
-        [projectile runAction:[SKAction removeFromParent]];
-        
-        NSLog(@"boss hit!");
-        if (bossHealth > 0) {
-            bossHealth --;
-        } else {
-            
-            //add explosion
-            SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithTexture:[_explosionTextures objectAtIndex:0]];
-            explosion.zPosition = 1;
-            //explosion.scale = 1.5;
-            explosion.position = contact.bodyA.node.position;
-            
-            // remove boss
-            SKNode *deadBoss = (SKNode *)[firstBody node];
-            [deadBoss runAction:[SKAction removeFromParent]];
-            
-            // announce next wave
-            SKLabelNode *waveLabel = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
-            waveLabel.text = @"Boss Defeated";
-            waveLabel.fontSize = 42;
-            waveLabel.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame)+20);
-            waveLabel.name = @"waveLabel";
-            [self addChild:waveLabel];
-            
-            SKLabelNode *waveLabel2 = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
-            waveLabel.text = @"Wave Incomming";
-            waveLabel.fontSize = 42;
-            waveLabel.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame)-20);
-            waveLabel.name = @"waveLabel";
-            [self addChild:waveLabel2];
-            
-            SKAction *wait = [SKAction waitForDuration:1];
-            SKAction *moveUp = [SKAction moveToY:screenHeight + 50 duration:0.01*(screenHeight+50-screenHeight/2)];
-            SKAction *remove = [SKAction removeFromParent];
-            /*
-            SKAction *callEnemies = [SKAction runBlock:^{
-                [self scheduleBattle];
-            }];
-             */
-            SKAction *moveSequence = [SKAction sequence:@[wait, moveUp, remove]];
-            
-            [waveLabel runAction:moveSequence];
-            [waveLabel2 runAction:moveSequence];
-            
-            [self scheduleBattle];
-        }
-    }
-    else if (secondBody.categoryBitMask == bossCategory && firstBody.categoryBitMask == bulletCategory)
-    {
-        SKNode *projectile = (SKNode *)[firstBody node];
-        [projectile runAction:[SKAction removeFromParent]];
-        
-        NSLog(@"BOSS HIT!");
-        if (bossHealth > 0) {
-            bossHealth --;
-        } else {
-            
-            //add explosion
-            SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithTexture:[_explosionTextures objectAtIndex:0]];
-            explosion.zPosition = 1;
-            explosion.scale = 1.5;
-            explosion.position = contact.bodyB.node.position;
-            
-            // remove boss
-            SKNode *deadBoss = (SKNode *)[secondBody node];
-            [deadBoss runAction:[SKAction removeFromParent]];
-            
-            // announce next wave
-            SKLabelNode *waveLabel = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
-            waveLabel.text = @"Boss Defeated\nWave Incomming";
-            waveLabel.fontSize = 42;
-            waveLabel.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
-            waveLabel.name = @"waveLabel";
-            [self addChild:waveLabel];
-            
-            SKLabelNode *waveLabel2 = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
-            waveLabel.text = @"Wave Incomming";
-            waveLabel.fontSize = 42;
-            waveLabel.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame)-20);
-            waveLabel.name = @"waveLabel";
-            [self addChild:waveLabel2];
-            
-            SKAction *wait = [SKAction waitForDuration:1];
-            SKAction *moveUp = [SKAction moveToY:screenHeight + 50 duration:0.01*(screenHeight+50-screenHeight/2)];
-            SKAction *remove = [SKAction removeFromParent];
-            /*
-             SKAction *callEnemies = [SKAction runBlock:^{
-             [self scheduleBattle];
-             }];
-             */
-            SKAction *moveSequence = [SKAction sequence:@[wait, moveUp, remove]];
-            
-            [waveLabel runAction:moveSequence];
-            [waveLabel2 runAction:moveSequence];
-            
-            [self scheduleBattle];
-        }
-    }
-    else if (firstBody.categoryBitMask == shipCategory && secondBody.categoryBitMask == bossCategory)
-    {
-        
-    }
-    else if (secondBody.categoryBitMask == shipCategory && firstBody.categoryBitMask == bossCategory)
-    {
-        
     }
 }
 
@@ -1017,6 +1080,37 @@
     if (_bg2.position.x < -_bg2.size.width) {
         _bg2.position = CGPointMake(_bg1.position.x + _bg1.size.width, _bg2.position.y);
     }
+}
+
+-(void)setBackgroundStuff {
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) {
+        _bg1 = [SKSpriteNode spriteNodeWithImageNamed:@"backgroundEDIT.png"];
+    } else {
+        _bg1 = [SKSpriteNode spriteNodeWithImageNamed:@"farback.gif"];
+    }
+    _bg1.anchorPoint = CGPointZero;
+    _bg1.position = CGPointMake(0, 0);
+    _bg1.name = @"background";
+    [self addChild:_bg1];
+    
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) {
+        _bg2 = [SKSpriteNode spriteNodeWithImageNamed:@"backgroundEDIT.png"];
+    } else {
+        _bg2 = [SKSpriteNode spriteNodeWithImageNamed:@"farback.gif"];
+    }
+    _bg2.anchorPoint = CGPointZero;
+    _bg2.position = CGPointMake(_bg1.size.width-1, 0);
+    _bg2.name = @"background";
+    [self addChild:_bg2];
+}
+
+-(void)addPlayerShip {
+    _ship = [SKSpriteNode spriteNodeWithImageNamed:@"player_ship.png"];
+    _ship.scale = 1;
+    _ship.zPosition = 2;
+    _ship.position = CGPointMake(screenWidth/10, screenHeight/2);
+    [self addChild:_ship];
 }
 
 @end

@@ -24,12 +24,33 @@
         TitleNode.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
         TitleNode.name = @"TitleNode";
         [self addChild:TitleNode];
+        
+        SKLabelNode *playNode = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
+        playNode.text = @"[PRESS ANYWHERE TO START]";
+        playNode.fontSize = 20;
+        playNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)-30);
+        playNode.name = @"playNode";
+        [self addChild:playNode];
+        
+        SKAction *blink = [SKAction sequence:@[[SKAction fadeOutWithDuration:1],
+                                               [SKAction fadeInWithDuration:1]]];
+        [playNode runAction:[SKAction repeatActionForever:blink]];
+        
     }
     return self;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
+    
+    [self runAction:[SKAction playSoundFileNamed:@"startSound.mp3" waitForCompletion:NO]];
+    
+    SKNode *playNode = [self childNodeWithName:@"playNode"];
+    if (playNode != nil)
+    {
+        [playNode removeAllActions];
+        [playNode runAction:[SKAction sequence:@[[SKAction fadeOutWithDuration:0.2],[SKAction removeFromParent]]]];
+    }
     
     SKNode *TitleNode = [self childNodeWithName:@"TitleNode"];
     if (TitleNode != nil)
