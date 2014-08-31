@@ -111,7 +111,6 @@
 		E5E5288D19B281BE0001962F /* redbossbullet3.png in Resources */ = {isa = PBXBuildFile; fileRef = E528349A19919BCB009000CD /* redbossbullet3.png */; };
 		E5E5288E19B281BE0001962F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E515B5AC1963698500CB0997 /* InfoPlist.strings */; };
 		E5E5288F19B281BE0001962F /* f4.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16DD197092F500C679D3 /* f4.png */; };
-		E5E5289719B2A3EA0001962F /* GameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E5289619B2A3EA0001962F /* GameKitHelper.m */; };
 		E5F2223C19AB9372004A798F /* Laser_Shoot.wav in Resources */ = {isa = PBXBuildFile; fileRef = E5F2223919AB9372004A798F /* Laser_Shoot.wav */; };
 		E5F2223D19AB9372004A798F /* ExplosionBoss.wav in Resources */ = {isa = PBXBuildFile; fileRef = E5F2223A19AB9372004A798F /* ExplosionBoss.wav */; };
 		E5F2223E19AB9372004A798F /* Explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = E5F2223B19AB9372004A798F /* Explosion.wav */; };
@@ -191,8 +190,6 @@
 		E5C7FF7719A999D1002D1355 /* backgroundEDIT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backgroundEDIT.png; path = ../backgroundEDIT.png; sourceTree = "<group>"; };
 		E5E5289319B281BE0001962F /* Arcade Space Shooter Free.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Arcade Space Shooter Free.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5E5289419B281BE0001962F /* SpaceGameFree.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = SpaceGameFree.plist; path = "/Users/anqi/Documents/Test Obj C/SpaceGame/SpaceGameFree.plist"; sourceTree = "<absolute>"; };
-		E5E5289519B2A3EA0001962F /* GameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKitHelper.h; sourceTree = "<group>"; };
-		E5E5289619B2A3EA0001962F /* GameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitHelper.m; sourceTree = "<group>"; };
 		E5F2223919AB9372004A798F /* Laser_Shoot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Laser_Shoot.wav; path = ../Laser_Shoot.wav; sourceTree = "<group>"; };
 		E5F2223A19AB9372004A798F /* ExplosionBoss.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ExplosionBoss.wav; path = ../ExplosionBoss.wav; sourceTree = "<group>"; };
 		E5F2223B19AB9372004A798F /* Explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Explosion.wav; path = ../Explosion.wav; sourceTree = "<group>"; };
@@ -243,8 +240,6 @@
 		E515B5951963698400CB0997 = {
 			isa = PBXGroup;
 			children = (
-				E5E5289519B2A3EA0001962F /* GameKitHelper.h */,
-				E5E5289619B2A3EA0001962F /* GameKitHelper.m */,
 				E5F2224119ABAA58004A798F /* Resources */,
 				E515B5A91963698500CB0997 /* SpaceGame */,
 				E515B5D01963698500CB0997 /* SpaceGameTests */,
@@ -588,7 +583,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5E5289719B2A3EA0001962F /* GameKitHelper.m in Sources */,
 				E515B5C01963698500CB0997 /* MyScene.m in Sources */,
 				E515B5BD1963698500CB0997 /* ViewController.m in Sources */,
 				E515B5B41963698500CB0997 /* AppDelegate.m in Sources */,

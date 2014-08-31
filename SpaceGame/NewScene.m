@@ -8,8 +8,6 @@
 
 #import "NewScene.h"
 #import "MyScene.h"
-#import "GameKitHelper.h"
-
 @implementation NewScene
 
 -(id)initWithSize:(CGSize)size {
@@ -770,9 +768,6 @@
             [player runAction:[SKAction removeFromParent]];
             [self addExplosionAtLocation:contact.bodyA.node.position];
             
-            // report score
-            [self reportScore];
-            
             // play sfx
             [self runAction:[SKAction playSoundFileNamed:@"ExplosionBoss.wav" waitForCompletion:NO]];
             
@@ -804,9 +799,6 @@
         
         // play sfx
         [self runAction:[SKAction playSoundFileNamed:@"Explosion.wav" waitForCompletion:NO]];
-        
-        //report score
-        [self reportScore];
         
         // get the ship to blink
         SKAction *blink = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.1],
@@ -1004,7 +996,6 @@
             SKAction *moveSequence = [SKAction sequence:@[wait, moveUp, remove]];
             
             [loseLabel runAction:moveSequence completion:^{
-                [self reportScore];
                 SKScene *NewScene  = [[MyScene alloc] initWithSize:self.size];
                 SKTransition *doors = [SKTransition doorsOpenVerticalWithDuration:0.5];
                 [self.view presentScene:NewScene transition:doors];
@@ -1044,17 +1035,12 @@
             SKAction *moveSequence = [SKAction sequence:@[wait, moveUp, remove]];
             
             [loseLabel runAction:moveSequence completion:^{
-                [self reportScore];
                 SKScene *NewScene  = [[MyScene alloc] initWithSize:self.size];
                 SKTransition *doors = [SKTransition doorsOpenVerticalWithDuration:0.5];
                 [self.view presentScene:NewScene transition:doors];
             }];
         }
     }
-}
-
--(void)reportScore {
-    [GameKitHelper reportScore:score forIdentifier:@"grp.SpaceLeaderboard"];
 }
 
 -(void)addExplosionAtLocation:(CGPoint)location {
