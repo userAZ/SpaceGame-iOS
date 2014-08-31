@@ -8,6 +8,8 @@
 
 #import "NewScene.h"
 #import "MyScene.h"
+#import "GameKitHelper.h"
+
 @implementation NewScene
 
 -(id)initWithSize:(CGSize)size {
@@ -34,6 +36,7 @@
             [_explosionTextures addObject:texture];
         }
         
+        [self setBackgroundStuff];
         [self makeLabels];
         [self addPlayerShip];
         [self makeMovementButtons];
@@ -284,7 +287,7 @@
 }
 
 -(void)BarProgress {
-    SKSpriteNode *progressBar = [SKSpriteNode spriteNodeWithImageNamed:@"BarOutline.png"];
+    SKSpriteNode *progressBar = [SKSpriteNode spriteNodeWithImageNamed:@"barOutline.png"];
     progressBar.zPosition = 2;
     progressBar.position = CGPointMake(screenWidth/2, screenHeight*0.90);
     progressBar.name = @"progressBar";
@@ -767,6 +770,9 @@
             [player runAction:[SKAction removeFromParent]];
             [self addExplosionAtLocation:contact.bodyA.node.position];
             
+            // report score
+            [self reportScore];
+            
             // play sfx
             [self runAction:[SKAction playSoundFileNamed:@"ExplosionBoss.wav" waitForCompletion:NO]];
             
@@ -798,6 +804,9 @@
         
         // play sfx
         [self runAction:[SKAction playSoundFileNamed:@"Explosion.wav" waitForCompletion:NO]];
+        
+        //report score
+        [self reportScore];
         
         // get the ship to blink
         SKAction *blink = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.1],
@@ -995,6 +1004,7 @@
             SKAction *moveSequence = [SKAction sequence:@[wait, moveUp, remove]];
             
             [loseLabel runAction:moveSequence completion:^{
+                [self reportScore];
                 SKScene *NewScene  = [[MyScene alloc] initWithSize:self.size];
                 SKTransition *doors = [SKTransition doorsOpenVerticalWithDuration:0.5];
                 [self.view presentScene:NewScene transition:doors];
@@ -1034,12 +1044,17 @@
             SKAction *moveSequence = [SKAction sequence:@[wait, moveUp, remove]];
             
             [loseLabel runAction:moveSequence completion:^{
+                [self reportScore];
                 SKScene *NewScene  = [[MyScene alloc] initWithSize:self.size];
                 SKTransition *doors = [SKTransition doorsOpenVerticalWithDuration:0.5];
                 [self.view presentScene:NewScene transition:doors];
             }];
         }
     }
+}
+
+-(void)reportScore {
+    [GameKitHelper reportScore:score forIdentifier:@"grp.SpaceLeaderboard"];
 }
 
 -(void)addExplosionAtLocation:(CGPoint)location {
@@ -1110,6 +1125,11 @@
     _ship.scale = 1;
     _ship.zPosition = 2;
     _ship.position = CGPointMake(screenWidth/10, screenHeight/2);
+    _ship.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_ship.size];
+    _ship.physicsBody.categoryBitMask = shipCategory;
+    _ship.physicsBody.contactTestBitMask = enemyCategory;
+    _ship.physicsBody.dynamic = YES;
+    
     [self addChild:_ship];
 }
 

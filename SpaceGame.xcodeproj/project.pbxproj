@@ -38,6 +38,7 @@
 		E528349C19919BCB009000CD /* redbossbullet2.png in Resources */ = {isa = PBXBuildFile; fileRef = E528349919919BCB009000CD /* redbossbullet2.png */; };
 		E528349D19919BCB009000CD /* redbossbullet3.png in Resources */ = {isa = PBXBuildFile; fileRef = E528349A19919BCB009000CD /* redbossbullet3.png */; };
 		E528349F19919BFB009000CD /* redbossbullet.png in Resources */ = {isa = PBXBuildFile; fileRef = E528349E19919BFB009000CD /* redbossbullet.png */; };
+		E53A39FB19AD60FE00A5C71A /* StartSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = E53A39FA19AD60FE00A5C71A /* StartSound.wav */; };
 		E54F16E0197092F500C679D3 /* f2.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16DB197092F500C679D3 /* f2.png */; };
 		E54F16E1197092F500C679D3 /* f3.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16DC197092F500C679D3 /* f3.png */; };
 		E54F16E2197092F500C679D3 /* f4.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16DD197092F500C679D3 /* f4.png */; };
@@ -55,9 +56,62 @@
 		E56476FA19A19DFF00C96730 /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E56476F619A19DFF00C96730 /* RightArrow.png */; };
 		E56476FB19A19DFF00C96730 /* UpArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E56476F719A19DFF00C96730 /* UpArrow.png */; };
 		E5A36869199AF6BF00617404 /* enemyShip1.png in Resources */ = {isa = PBXBuildFile; fileRef = E5A36868199AF6BF00617404 /* enemyShip1.png */; };
+		E5A9459919B2A820000FF9D2 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5A9459819B2A820000FF9D2 /* GameKit.framework */; };
+		E5A9459A19B2A9BC000FF9D2 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5A9459819B2A820000FF9D2 /* GameKit.framework */; };
 		E5C7FF7619A99939002D1355 /* farbackIPAD.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C7FF7519A99939002D1355 /* farbackIPAD.png */; };
 		E5C7FF7819A999D1002D1355 /* backgroundEDIT.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C7FF7719A999D1002D1355 /* backgroundEDIT.png */; };
-		E5F2223819AAC587004A798F /* startSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5F2223719AAC587004A798F /* startSound.mp3 */; };
+		E5E5285B19B281BE0001962F /* MyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E515B5BF1963698500CB0997 /* MyScene.m */; };
+		E5E5285C19B281BE0001962F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E515B5BC1963698500CB0997 /* ViewController.m */; };
+		E5E5285D19B281BE0001962F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E515B5B31963698500CB0997 /* AppDelegate.m */; };
+		E5E5285E19B281BE0001962F /* NewScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E515B5E719636A3C00CB0997 /* NewScene.m */; };
+		E5E5285F19B281BE0001962F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E515B5AF1963698500CB0997 /* main.m */; };
+		E5E5286119B281BE0001962F /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F2224419ABAD0C004A798F /* iAd.framework */; };
+		E5E5286219B281BE0001962F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E515B5A31963698400CB0997 /* CoreGraphics.framework */; };
+		E5E5286319B281BE0001962F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E515B5A51963698500CB0997 /* UIKit.framework */; };
+		E5E5286419B281BE0001962F /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E515B5A71963698500CB0997 /* SpriteKit.framework */; };
+		E5E5286519B281BE0001962F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E515B5A11963698400CB0997 /* Foundation.framework */; };
+		E5E5286719B281BE0001962F /* f3.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16DC197092F500C679D3 /* f3.png */; };
+		E5E5286819B281BE0001962F /* DownArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E56476F419A19DFF00C96730 /* DownArrow.png */; };
+		E5E5286919B281BE0001962F /* redbossbullet2.png in Resources */ = {isa = PBXBuildFile; fileRef = E528349919919BCB009000CD /* redbossbullet2.png */; };
+		E5E5286A19B281BE0001962F /* player_ship.png in Resources */ = {isa = PBXBuildFile; fileRef = E515B5E01963699F00CB0997 /* player_ship.png */; };
+		E5E5286B19B281BE0001962F /* UpArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E56476F719A19DFF00C96730 /* UpArrow.png */; };
+		E5E5286C19B281BE0001962F /* farback.gif in Resources */ = {isa = PBXBuildFile; fileRef = E515B5E21963699F00CB0997 /* farback.gif */; };
+		E5E5286D19B281BE0001962F /* EXPLOSION.atlas in Resources */ = {isa = PBXBuildFile; fileRef = E50E1609199D919200F007C1 /* EXPLOSION.atlas */; };
+		E5E5286E19B281BE0001962F /* ExplosionBoss.wav in Resources */ = {isa = PBXBuildFile; fileRef = E5F2223A19AB9372004A798F /* ExplosionBoss.wav */; };
+		E5E5286F19B281BE0001962F /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = E515B5C11963698500CB0997 /* Spaceship.png */; };
+		E5E5287019B281BE0001962F /* Hit_Hurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = E5F2223F19AB953B004A798F /* Hit_Hurt.wav */; };
+		E5E5287119B281BE0001962F /* barOutline.png in Resources */ = {isa = PBXBuildFile; fileRef = E50340F819731F1000A3C131 /* barOutline.png */; };
+		E5E5287219B281BE0001962F /* bossBullet2.png in Resources */ = {isa = PBXBuildFile; fileRef = E51E1318196B846800E46821 /* bossBullet2.png */; };
+		E5E5287319B281BE0001962F /* f6.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16DF197092F500C679D3 /* f6.png */; };
+		E5E5287419B281BE0001962F /* f5.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16DE197092F500C679D3 /* f5.png */; };
+		E5E5287519B281BE0001962F /* f2.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16DB197092F500C679D3 /* f2.png */; };
+		E5E5287619B281BE0001962F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E515B5C31963698500CB0997 /* Images.xcassets */; };
+		E5E5287719B281BE0001962F /* farbackIPAD.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C7FF7519A99939002D1355 /* farbackIPAD.png */; };
+		E5E5287819B281BE0001962F /* backgroundEDIT.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C7FF7719A999D1002D1355 /* backgroundEDIT.png */; };
+		E5E5287919B281BE0001962F /* enemyShip1.png in Resources */ = {isa = PBXBuildFile; fileRef = E5A36868199AF6BF00617404 /* enemyShip1.png */; };
+		E5E5287A19B281BE0001962F /* one_bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = E50340EC1973082D00A3C131 /* one_bullet.png */; };
+		E5E5287B19B281BE0001962F /* redbossbullet.png in Resources */ = {isa = PBXBuildFile; fileRef = E528349E19919BFB009000CD /* redbossbullet.png */; };
+		E5E5287C19B281BE0001962F /* beam6.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16EE1970C8A900C679D3 /* beam6.png */; };
+		E5E5287D19B281BE0001962F /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E56476F619A19DFF00C96730 /* RightArrow.png */; };
+		E5E5287E19B281BE0001962F /* enemyShip3.png in Resources */ = {isa = PBXBuildFile; fileRef = E56476F019A1952700C96730 /* enemyShip3.png */; };
+		E5E5287F19B281BE0001962F /* beam7.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16F51970CD4500C679D3 /* beam7.png */; };
+		E5E5288019B281BE0001962F /* beam5.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16ED1970C8A900C679D3 /* beam5.png */; };
+		E5E5288119B281BE0001962F /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E515B5B81963698500CB0997 /* Main_iPad.storyboard */; };
+		E5E5288219B281BE0001962F /* FireButtonPlaceHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = E51E1312196A270500E46821 /* FireButtonPlaceHolder.png */; };
+		E5E5288319B281BE0001962F /* LeftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E56476F519A19DFF00C96730 /* LeftArrow.png */; };
+		E5E5288419B281BE0001962F /* Laser_Shoot.wav in Resources */ = {isa = PBXBuildFile; fileRef = E5F2223919AB9372004A798F /* Laser_Shoot.wav */; };
+		E5E5288519B281BE0001962F /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E515B5B51963698500CB0997 /* Main_iPhone.storyboard */; };
+		E5E5288619B281BE0001962F /* boss1.png in Resources */ = {isa = PBXBuildFile; fileRef = E51E131A196B859300E46821 /* boss1.png */; };
+		E5E5288719B281BE0001962F /* StartSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = E53A39FA19AD60FE00A5C71A /* StartSound.wav */; };
+		E5E5288819B281BE0001962F /* enemyShip4.png in Resources */ = {isa = PBXBuildFile; fileRef = E56476F119A1952700C96730 /* enemyShip4.png */; };
+		E5E5288919B281BE0001962F /* boss2.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16F91970E17300C679D3 /* boss2.png */; };
+		E5E5288A19B281BE0001962F /* Explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = E5F2223B19AB9372004A798F /* Explosion.wav */; };
+		E5E5288B19B281BE0001962F /* beam8.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16F61970CD4500C679D3 /* beam8.png */; };
+		E5E5288C19B281BE0001962F /* Bar.png in Resources */ = {isa = PBXBuildFile; fileRef = E50340EE19730C7900A3C131 /* Bar.png */; };
+		E5E5288D19B281BE0001962F /* redbossbullet3.png in Resources */ = {isa = PBXBuildFile; fileRef = E528349A19919BCB009000CD /* redbossbullet3.png */; };
+		E5E5288E19B281BE0001962F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E515B5AC1963698500CB0997 /* InfoPlist.strings */; };
+		E5E5288F19B281BE0001962F /* f4.png in Resources */ = {isa = PBXBuildFile; fileRef = E54F16DD197092F500C679D3 /* f4.png */; };
+		E5E5289719B2A3EA0001962F /* GameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E5289619B2A3EA0001962F /* GameKitHelper.m */; };
 		E5F2223C19AB9372004A798F /* Laser_Shoot.wav in Resources */ = {isa = PBXBuildFile; fileRef = E5F2223919AB9372004A798F /* Laser_Shoot.wav */; };
 		E5F2223D19AB9372004A798F /* ExplosionBoss.wav in Resources */ = {isa = PBXBuildFile; fileRef = E5F2223A19AB9372004A798F /* ExplosionBoss.wav */; };
 		E5F2223E19AB9372004A798F /* Explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = E5F2223B19AB9372004A798F /* Explosion.wav */; };
@@ -80,7 +134,7 @@
 		E50340EE19730C7900A3C131 /* Bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Bar.png; path = ../Bar.png; sourceTree = "<group>"; };
 		E50340F819731F1000A3C131 /* barOutline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barOutline.png; path = ../barOutline.png; sourceTree = "<group>"; };
 		E50E1609199D919200F007C1 /* EXPLOSION.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = EXPLOSION.atlas; path = ../EXPLOSION.atlas; sourceTree = "<group>"; };
-		E515B59E1963698400CB0997 /* SpaceGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E515B59E1963698400CB0997 /* Arcade Space Shooter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Arcade Space Shooter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E515B5A11963698400CB0997 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E515B5A31963698400CB0997 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E515B5A51963698500CB0997 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -114,6 +168,7 @@
 		E528349919919BCB009000CD /* redbossbullet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redbossbullet2.png; path = ../redbossbullet2.png; sourceTree = "<group>"; };
 		E528349A19919BCB009000CD /* redbossbullet3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redbossbullet3.png; path = ../redbossbullet3.png; sourceTree = "<group>"; };
 		E528349E19919BFB009000CD /* redbossbullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redbossbullet.png; path = ../redbossbullet.png; sourceTree = "<group>"; };
+		E53A39FA19AD60FE00A5C71A /* StartSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = StartSound.wav; path = ../../../../../Desktop/StartSound.wav; sourceTree = "<group>"; };
 		E54F16DB197092F500C679D3 /* f2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = f2.png; path = ../f2.png; sourceTree = "<group>"; };
 		E54F16DC197092F500C679D3 /* f3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = f3.png; path = ../f3.png; sourceTree = "<group>"; };
 		E54F16DD197092F500C679D3 /* f4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = f4.png; path = ../f4.png; sourceTree = "<group>"; };
@@ -131,9 +186,13 @@
 		E56476F619A19DFF00C96730 /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RightArrow.png; path = ../RightArrow.png; sourceTree = "<group>"; };
 		E56476F719A19DFF00C96730 /* UpArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UpArrow.png; path = ../UpArrow.png; sourceTree = "<group>"; };
 		E5A36868199AF6BF00617404 /* enemyShip1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enemyShip1.png; path = ../enemyShip1.png; sourceTree = "<group>"; };
+		E5A9459819B2A820000FF9D2 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		E5C7FF7519A99939002D1355 /* farbackIPAD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = farbackIPAD.png; path = ../farbackIPAD.png; sourceTree = "<group>"; };
 		E5C7FF7719A999D1002D1355 /* backgroundEDIT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backgroundEDIT.png; path = ../backgroundEDIT.png; sourceTree = "<group>"; };
-		E5F2223719AAC587004A798F /* startSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = startSound.mp3; path = ../startSound.mp3; sourceTree = "<group>"; };
+		E5E5289319B281BE0001962F /* Arcade Space Shooter Free.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Arcade Space Shooter Free.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5E5289419B281BE0001962F /* SpaceGameFree.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = SpaceGameFree.plist; path = "/Users/anqi/Documents/Test Obj C/SpaceGame/SpaceGameFree.plist"; sourceTree = "<absolute>"; };
+		E5E5289519B2A3EA0001962F /* GameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKitHelper.h; sourceTree = "<group>"; };
+		E5E5289619B2A3EA0001962F /* GameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitHelper.m; sourceTree = "<group>"; };
 		E5F2223919AB9372004A798F /* Laser_Shoot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Laser_Shoot.wav; path = ../Laser_Shoot.wav; sourceTree = "<group>"; };
 		E5F2223A19AB9372004A798F /* ExplosionBoss.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ExplosionBoss.wav; path = ../ExplosionBoss.wav; sourceTree = "<group>"; };
 		E5F2223B19AB9372004A798F /* Explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Explosion.wav; path = ../Explosion.wav; sourceTree = "<group>"; };
@@ -149,6 +208,7 @@
 				E5F2224519ABAD0C004A798F /* iAd.framework in Frameworks */,
 				E515B5A41963698400CB0997 /* CoreGraphics.framework in Frameworks */,
 				E515B5A61963698500CB0997 /* UIKit.framework in Frameworks */,
+				E5A9459A19B2A9BC000FF9D2 /* GameKit.framework in Frameworks */,
 				E515B5A81963698500CB0997 /* SpriteKit.framework in Frameworks */,
 				E515B5A21963698400CB0997 /* Foundation.framework in Frameworks */,
 			);
@@ -164,25 +224,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E5E5286019B281BE0001962F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5E5286119B281BE0001962F /* iAd.framework in Frameworks */,
+				E5E5286219B281BE0001962F /* CoreGraphics.framework in Frameworks */,
+				E5E5286319B281BE0001962F /* UIKit.framework in Frameworks */,
+				E5A9459919B2A820000FF9D2 /* GameKit.framework in Frameworks */,
+				E5E5286419B281BE0001962F /* SpriteKit.framework in Frameworks */,
+				E5E5286519B281BE0001962F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		E515B5951963698400CB0997 = {
 			isa = PBXGroup;
 			children = (
+				E5E5289519B2A3EA0001962F /* GameKitHelper.h */,
+				E5E5289619B2A3EA0001962F /* GameKitHelper.m */,
 				E5F2224119ABAA58004A798F /* Resources */,
 				E515B5A91963698500CB0997 /* SpaceGame */,
 				E515B5D01963698500CB0997 /* SpaceGameTests */,
 				E515B5A01963698400CB0997 /* Frameworks */,
 				E515B59F1963698400CB0997 /* Products */,
+				E5E5289419B281BE0001962F /* SpaceGameFree.plist */,
 			);
 			sourceTree = "<group>";
 		};
 		E515B59F1963698400CB0997 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E515B59E1963698400CB0997 /* SpaceGame.app */,
+				E515B59E1963698400CB0997 /* Arcade Space Shooter.app */,
 				E515B5C91963698500CB0997 /* SpaceGameTests.xctest */,
+				E5E5289319B281BE0001962F /* Arcade Space Shooter Free.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -190,6 +267,7 @@
 		E515B5A01963698400CB0997 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5A9459819B2A820000FF9D2 /* GameKit.framework */,
 				E5F2224419ABAD0C004A798F /* iAd.framework */,
 				E515B5A11963698400CB0997 /* Foundation.framework */,
 				E515B5A31963698400CB0997 /* CoreGraphics.framework */,
@@ -256,8 +334,8 @@
 				E5F2223F19AB953B004A798F /* Hit_Hurt.wav */,
 				E5F2223919AB9372004A798F /* Laser_Shoot.wav */,
 				E5F2223A19AB9372004A798F /* ExplosionBoss.wav */,
+				E53A39FA19AD60FE00A5C71A /* StartSound.wav */,
 				E5F2223B19AB9372004A798F /* Explosion.wav */,
-				E5F2223719AAC587004A798F /* startSound.mp3 */,
 				E5C7FF7719A999D1002D1355 /* backgroundEDIT.png */,
 				E5C7FF7519A99939002D1355 /* farbackIPAD.png */,
 				E56476F419A19DFF00C96730 /* DownArrow.png */,
@@ -310,7 +388,7 @@
 			);
 			name = SpaceGame;
 			productName = SpaceGame;
-			productReference = E515B59E1963698400CB0997 /* SpaceGame.app */;
+			productReference = E515B59E1963698400CB0997 /* Arcade Space Shooter.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E515B5C81963698500CB0997 /* SpaceGameTests */ = {
@@ -331,6 +409,23 @@
 			productReference = E515B5C91963698500CB0997 /* SpaceGameTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		E5E5285919B281BE0001962F /* SpaceGameFree */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5E5289019B281BE0001962F /* Build configuration list for PBXNativeTarget "SpaceGameFree" */;
+			buildPhases = (
+				E5E5285A19B281BE0001962F /* Sources */,
+				E5E5286019B281BE0001962F /* Frameworks */,
+				E5E5286619B281BE0001962F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpaceGameFree;
+			productName = SpaceGame;
+			productReference = E5E5289319B281BE0001962F /* Arcade Space Shooter Free.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -340,8 +435,24 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "An Qi";
 				TargetAttributes = {
+					E515B59D1963698400CB0997 = {
+						DevelopmentTeam = B2NE53U28T;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
+					};
 					E515B5C81963698500CB0997 = {
 						TestTargetID = E515B59D1963698400CB0997;
+					};
+					E5E5285919B281BE0001962F = {
+						DevelopmentTeam = B2NE53U28T;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -360,6 +471,7 @@
 			targets = (
 				E515B59D1963698400CB0997 /* SpaceGame */,
 				E515B5C81963698500CB0997 /* SpaceGameTests */,
+				E5E5285919B281BE0001962F /* SpaceGameFree */,
 			);
 		};
 /* End PBXProject section */
@@ -381,7 +493,6 @@
 				E5F2224019AB953B004A798F /* Hit_Hurt.wav in Resources */,
 				E50340F919731F1000A3C131 /* barOutline.png in Resources */,
 				E51E1319196B846800E46821 /* bossBullet2.png in Resources */,
-				E5F2223819AAC587004A798F /* startSound.mp3 in Resources */,
 				E54F16E4197092F500C679D3 /* f6.png in Resources */,
 				E54F16E3197092F500C679D3 /* f5.png in Resources */,
 				E54F16E0197092F500C679D3 /* f2.png in Resources */,
@@ -402,6 +513,7 @@
 				E5F2223C19AB9372004A798F /* Laser_Shoot.wav in Resources */,
 				E515B5B71963698500CB0997 /* Main_iPhone.storyboard in Resources */,
 				E51E131B196B859300E46821 /* boss1.png in Resources */,
+				E53A39FB19AD60FE00A5C71A /* StartSound.wav in Resources */,
 				E56476F319A1952700C96730 /* enemyShip4.png in Resources */,
 				E54F16FA1970E17300C679D3 /* boss2.png in Resources */,
 				E5F2223E19AB9372004A798F /* Explosion.wav in Resources */,
@@ -421,6 +533,54 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E5E5286619B281BE0001962F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5E5286719B281BE0001962F /* f3.png in Resources */,
+				E5E5286819B281BE0001962F /* DownArrow.png in Resources */,
+				E5E5286919B281BE0001962F /* redbossbullet2.png in Resources */,
+				E5E5286A19B281BE0001962F /* player_ship.png in Resources */,
+				E5E5286B19B281BE0001962F /* UpArrow.png in Resources */,
+				E5E5286C19B281BE0001962F /* farback.gif in Resources */,
+				E5E5286D19B281BE0001962F /* EXPLOSION.atlas in Resources */,
+				E5E5286E19B281BE0001962F /* ExplosionBoss.wav in Resources */,
+				E5E5286F19B281BE0001962F /* Spaceship.png in Resources */,
+				E5E5287019B281BE0001962F /* Hit_Hurt.wav in Resources */,
+				E5E5287119B281BE0001962F /* barOutline.png in Resources */,
+				E5E5287219B281BE0001962F /* bossBullet2.png in Resources */,
+				E5E5287319B281BE0001962F /* f6.png in Resources */,
+				E5E5287419B281BE0001962F /* f5.png in Resources */,
+				E5E5287519B281BE0001962F /* f2.png in Resources */,
+				E5E5287619B281BE0001962F /* Images.xcassets in Resources */,
+				E5E5287719B281BE0001962F /* farbackIPAD.png in Resources */,
+				E5E5287819B281BE0001962F /* backgroundEDIT.png in Resources */,
+				E5E5287919B281BE0001962F /* enemyShip1.png in Resources */,
+				E5E5287A19B281BE0001962F /* one_bullet.png in Resources */,
+				E5E5287B19B281BE0001962F /* redbossbullet.png in Resources */,
+				E5E5287C19B281BE0001962F /* beam6.png in Resources */,
+				E5E5287D19B281BE0001962F /* RightArrow.png in Resources */,
+				E5E5287E19B281BE0001962F /* enemyShip3.png in Resources */,
+				E5E5287F19B281BE0001962F /* beam7.png in Resources */,
+				E5E5288019B281BE0001962F /* beam5.png in Resources */,
+				E5E5288119B281BE0001962F /* Main_iPad.storyboard in Resources */,
+				E5E5288219B281BE0001962F /* FireButtonPlaceHolder.png in Resources */,
+				E5E5288319B281BE0001962F /* LeftArrow.png in Resources */,
+				E5E5288419B281BE0001962F /* Laser_Shoot.wav in Resources */,
+				E5E5288519B281BE0001962F /* Main_iPhone.storyboard in Resources */,
+				E5E5288619B281BE0001962F /* boss1.png in Resources */,
+				E5E5288719B281BE0001962F /* StartSound.wav in Resources */,
+				E5E5288819B281BE0001962F /* enemyShip4.png in Resources */,
+				E5E5288919B281BE0001962F /* boss2.png in Resources */,
+				E5E5288A19B281BE0001962F /* Explosion.wav in Resources */,
+				E5E5288B19B281BE0001962F /* beam8.png in Resources */,
+				E5E5288C19B281BE0001962F /* Bar.png in Resources */,
+				E5E5288D19B281BE0001962F /* redbossbullet3.png in Resources */,
+				E5E5288E19B281BE0001962F /* InfoPlist.strings in Resources */,
+				E5E5288F19B281BE0001962F /* f4.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -428,6 +588,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5E5289719B2A3EA0001962F /* GameKitHelper.m in Sources */,
 				E515B5C01963698500CB0997 /* MyScene.m in Sources */,
 				E515B5BD1963698500CB0997 /* ViewController.m in Sources */,
 				E515B5B41963698500CB0997 /* AppDelegate.m in Sources */,
@@ -441,6 +602,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E515B5D71963698500CB0997 /* SpaceGameTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5E5285A19B281BE0001962F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5E5285B19B281BE0001962F /* MyScene.m in Sources */,
+				E5E5285C19B281BE0001962F /* ViewController.m in Sources */,
+				E5E5285D19B281BE0001962F /* AppDelegate.m in Sources */,
+				E5E5285E19B281BE0001962F /* NewScene.m in Sources */,
+				E5E5285F19B281BE0001962F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,10 +740,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SpaceGame/SpaceGame-Prefix.pch";
 				INFOPLIST_FILE = "SpaceGame/SpaceGame-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Arcade Space Shooter";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -581,10 +757,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SpaceGame/SpaceGame-Prefix.pch";
 				INFOPLIST_FILE = "SpaceGame/SpaceGame-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Arcade Space Shooter";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -630,6 +809,46 @@
 			};
 			name = Release;
 		};
+		E5E5289119B281BE0001962F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SpaceGame/SpaceGame-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"FREE=1",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/SpaceGameFree.plist";
+				PRODUCT_NAME = "Arcade Space Shooter Free";
+				PROVISIONING_PROFILE = "";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E5E5289219B281BE0001962F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SpaceGame/SpaceGame-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "FREE=1";
+				INFOPLIST_FILE = "$(SRCROOT)/SpaceGameFree.plist";
+				PRODUCT_NAME = "Arcade Space Shooter Free";
+				PROVISIONING_PROFILE = "";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -656,6 +875,15 @@
 			buildConfigurations = (
 				E515B5DE1963698500CB0997 /* Debug */,
 				E515B5DF1963698500CB0997 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E5E5289019B281BE0001962F /* Build configuration list for PBXNativeTarget "SpaceGameFree" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5E5289119B281BE0001962F /* Debug */,
+				E5E5289219B281BE0001962F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

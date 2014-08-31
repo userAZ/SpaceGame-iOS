@@ -14,7 +14,13 @@
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
-        SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"farback.gif"];
+        
+        SKSpriteNode *background;
+        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) {
+            background = [SKSpriteNode spriteNodeWithImageNamed:@"backgroundEDIT.png"];
+        } else {
+            background = [SKSpriteNode spriteNodeWithImageNamed:@"farback.gif"];
+        }
         background.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
         [self addChild:background];
         
@@ -43,7 +49,7 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
-    [self runAction:[SKAction playSoundFileNamed:@"startSound.mp3" waitForCompletion:NO]];
+    [self runAction:[SKAction playSoundFileNamed:@"StartSound.wav" waitForCompletion:NO]];
     
     SKNode *playNode = [self childNodeWithName:@"playNode"];
     if (playNode != nil)

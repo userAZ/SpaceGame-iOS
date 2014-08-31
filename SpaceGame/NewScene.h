@@ -19,9 +19,6 @@ static const uint8_t bossCategory = 4;
     CGFloat screenHeight;
     CGFloat screenWidth;
     int count;
-    
-    /////////////////////////////////////////////////////////////////////////////////////////////////////
-    // stuff to add in
     int lives;
     int score;
     SKLabelNode *livesLabel, *scoreLabel;
