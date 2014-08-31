@@ -566,28 +566,28 @@
 
 -(void)makeMovementButtons {
     _upbutton = [SKSpriteNode spriteNodeWithImageNamed:@"UpArrow.png"];
-    _upbutton.scale = 0.1;
+    _upbutton.scale = 0.3;
     _upbutton.zPosition = 2;
     _upbutton.position = CGPointMake(screenWidth/10, screenHeight/10);
     _upbutton.name = @"upbutton";
     [self addChild:_upbutton];
     
     _downbutton = [SKSpriteNode spriteNodeWithImageNamed:@"DownArrow.png"];
-    _downbutton.scale = 0.1;
+    _downbutton.scale = 0.3;
     _downbutton.zPosition = 2;
     _downbutton.position = CGPointMake(screenWidth/10, screenHeight/10-20); // 20 pts below up button
     _downbutton.name = @"downbutton";
     [self addChild:_downbutton];
     
     _rightbutton = [SKSpriteNode spriteNodeWithImageNamed:@"RightArrow.png"];
-    _rightbutton.scale = 0.1;
+    _rightbutton.scale = 0.3;
     _rightbutton.zPosition = 2;
     _rightbutton.position = CGPointMake(screenWidth/10+20, screenHeight/10-10);
     _rightbutton.name = @"rightbutton";
     [self addChild:_rightbutton];
     
     _leftbutton = [SKSpriteNode spriteNodeWithImageNamed:@"LeftArrow.png"];
-    _leftbutton.scale = 0.1;
+    _leftbutton.scale = 0.3;
     _leftbutton.zPosition = 2;
     _leftbutton.position = CGPointMake(screenWidth/10-20, screenHeight/10-10);
     _leftbutton.name = @"leftbutton";

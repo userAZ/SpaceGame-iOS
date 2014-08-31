@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "MyScene.h"
-#import "GameKitHelper.h"
 
 @interface ViewController () <ADBannerViewDelegate>
 @property (nonatomic, strong) ADBannerView *BannerAd;
@@ -19,16 +18,7 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(showAuthenticationViewController)
-     name:PresentAuthenticationViewController
-     object:nil];
-    
-    [[GameKitHelper sharedGameKitHelper]
-     authenticateLocalPlayer];
-    
+            
 #ifdef FREE
     self.BannerAd = [[ADBannerView alloc] initWithFrame:CGRectZero];
     self.BannerAd.delegate = self;
@@ -52,22 +42,6 @@
         // Present the scene.
         [skView presentScene:scene];
     }
-}
-
-- (void)showAuthenticationViewController
-{
-    GameKitHelper *gameKitHelper =
-    [GameKitHelper sharedGameKitHelper];
-    
-    [self presentViewController:
-     gameKitHelper.authenticationViewController
-                                         animated:YES
-                                       completion:nil];
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
