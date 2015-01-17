@@ -18,8 +18,15 @@
         self.physicsWorld.contactDelegate = self;
         
         screenRect = [[UIScreen mainScreen] bounds];
-        screenHeight = screenRect.size.width;
-        screenWidth = screenRect.size.height;
+        
+        NSString *version = [[UIDevice currentDevice] systemVersion];
+        if ([version floatValue] >= 8) {
+            screenHeight = screenRect.size.height;
+            screenWidth = screenRect.size.width;
+        } else {
+            screenHeight = screenRect.size.width;
+            screenWidth = screenRect.size.height;
+        }
         
         count = 0;
         score = 0;
@@ -48,14 +55,22 @@
     scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
     scoreLabel.text = [NSString stringWithFormat:@"SCORE: %d",score];
     scoreLabel.fontSize = 20;
-    scoreLabel.position = CGPointMake(screenWidth*3/4,screenHeight*0.925);
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) {
+        scoreLabel.position = CGPointMake(screenWidth*3/4,screenHeight*0.85);
+    } else {
+        scoreLabel.position = CGPointMake(screenWidth*3/4,screenHeight*0.925);
+    }
     scoreLabel.name = @"scoreLabel";
     [self addChild:scoreLabel];
     
     livesLabel = [SKLabelNode labelNodeWithFontNamed:@"Copperplate"];
     livesLabel.text = [NSString stringWithFormat:@"LIVES: %d",lives];
     livesLabel.fontSize = 20;
-    livesLabel.position = CGPointMake(screenWidth/4,screenHeight*0.925);
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) {
+        livesLabel.position = CGPointMake(screenWidth/4,screenHeight*0.85);
+    } else {
+        livesLabel.position = CGPointMake(screenWidth/4,screenHeight*0.925);
+    }
     livesLabel.name = @"livesLabel";
     [self addChild:livesLabel];
 }
@@ -334,7 +349,7 @@
         boss.position = CGPointMake(screenWidth + boss.size.width, screenHeight/2);
         boss.zPosition = 1;
         
-        boss.physicsBody.dynamic = YES;
+        boss.physicsBody.dynamic = NO;
         boss.physicsBody.categoryBitMask = bossCategory;
         boss.physicsBody.contactTestBitMask = bulletCategory;
         
@@ -423,7 +438,7 @@
     // ADD in a if boss.name = head then RNG from 1 to ~ else if boss.name = ship then RNG form 1 to ~
     int attackChoice;
     //if ([self childNodeWithName:@"shipboss"]) {
-    attackChoice = [self getRandomNumberBetween:1 to:4];
+    attackChoice = [self getRandomNumberBetween:1 to:3];
     //} else {
     //    attackChoice = [self getRandomNumberBetween:1 to:6];
     //}
@@ -460,7 +475,7 @@
         [bossbullet runAction:fireSequence];
         [self addChild:bossbullet];
     }
-    else if (attackChoice == 3)
+    else if (attackChoice == 4)
     {
         for (int i = 0; i < 10; i++) {
             SKSpriteNode *bossbullet = [SKSpriteNode spriteNodeWithImageNamed:bulletType];
@@ -487,7 +502,7 @@
             [self addChild:bossbullet];
         }
     }
-    else if (attackChoice == 4)
+    else if (attackChoice == 3)
     {
         // use the // if location is greater than boss location then shoot above
         BOOL shootTop;
@@ -566,36 +581,41 @@
 
 -(void)makeMovementButtons {
     _upbutton = [SKSpriteNode spriteNodeWithImageNamed:@"UpArrow.png"];
-    _upbutton.scale = 0.3;
+    _upbutton.scale = 0.2;
+    _upbutton.alpha = 0.7;
     _upbutton.zPosition = 2;
-    _upbutton.position = CGPointMake(screenWidth/10, screenHeight/10);
+    _upbutton.position = CGPointMake(screenWidth/10, screenHeight/10+20);
     _upbutton.name = @"upbutton";
     [self addChild:_upbutton];
     
     _downbutton = [SKSpriteNode spriteNodeWithImageNamed:@"DownArrow.png"];
-    _downbutton.scale = 0.3;
+    _downbutton.scale = 0.2;
+    _downbutton.alpha = 0.7;
     _downbutton.zPosition = 2;
     _downbutton.position = CGPointMake(screenWidth/10, screenHeight/10-20); // 20 pts below up button
     _downbutton.name = @"downbutton";
     [self addChild:_downbutton];
     
     _rightbutton = [SKSpriteNode spriteNodeWithImageNamed:@"RightArrow.png"];
-    _rightbutton.scale = 0.3;
+    _rightbutton.scale = 0.2;
+    _rightbutton.alpha = 0.7;
     _rightbutton.zPosition = 2;
-    _rightbutton.position = CGPointMake(screenWidth/10+20, screenHeight/10-10);
+    _rightbutton.position = CGPointMake(screenWidth/10+40, screenHeight/10);
     _rightbutton.name = @"rightbutton";
     [self addChild:_rightbutton];
     
     _leftbutton = [SKSpriteNode spriteNodeWithImageNamed:@"LeftArrow.png"];
-    _leftbutton.scale = 0.3;
+    _leftbutton.scale = 0.2;
+    _leftbutton.alpha = 0.7;
     _leftbutton.zPosition = 2;
-    _leftbutton.position = CGPointMake(screenWidth/10-20, screenHeight/10-10);
+    _leftbutton.position = CGPointMake(screenWidth/10-40, screenHeight/10);
     _leftbutton.name = @"leftbutton";
     [self addChild:_leftbutton];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
+    self.userInteractionEnabled = NO;
     
     UITouch *touch = [touches anyObject];
     CGPoint touchlocation = [touch locationInNode:self];
@@ -614,6 +634,8 @@
     } else /*if ([node.name isEqual:@"background"])*/ {
         [self shootBullet];
     }
+    
+    self.userInteractionEnabled = YES;
 }
 
 -(void)shootBullet {
@@ -1066,6 +1088,7 @@
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    self.userInteractionEnabled = YES;
     [self.ship removeActionForKey:@"movement"];
 }
 
@@ -1085,7 +1108,7 @@
 
 -(void)setBackgroundStuff {
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) {
-        _bg1 = [SKSpriteNode spriteNodeWithImageNamed:@"backgroundEDIT.png"];
+        _bg1 = [SKSpriteNode spriteNodeWithImageNamed:@"backgroundEDIT.jpg"];
     } else {
         _bg1 = [SKSpriteNode spriteNodeWithImageNamed:@"farback.gif"];
     }
@@ -1096,7 +1119,7 @@
     
     
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) {
-        _bg2 = [SKSpriteNode spriteNodeWithImageNamed:@"backgroundEDIT.png"];
+        _bg2 = [SKSpriteNode spriteNodeWithImageNamed:@"backgroundEDIT.jpg"];
     } else {
         _bg2 = [SKSpriteNode spriteNodeWithImageNamed:@"farback.gif"];
     }

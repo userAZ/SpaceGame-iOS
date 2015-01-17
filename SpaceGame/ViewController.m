@@ -22,7 +22,14 @@
 #ifdef FREE
     self.BannerAd = [[ADBannerView alloc] initWithFrame:CGRectZero];
     self.BannerAd.delegate = self;
-    [_BannerAd setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width)]; // set to your screen dimensions
+    
+    NSString *version = [[UIDevice currentDevice] systemVersion];
+    if ([version floatValue] >= 8) {
+        [_BannerAd setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height)]; // set to your screen dimensions
+    } else {
+        [_BannerAd setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width)]; // set to your screen dimensions
+    }
+    
     [self.view addSubview:_BannerAd];
 #endif
     

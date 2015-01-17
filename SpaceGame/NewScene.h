@@ -28,6 +28,6 @@ static const uint8_t bossCategory = 4;
 @property NSMutableArray *explosionTextures;
 @property SKSpriteNode *ship;
 @property SKSpriteNode *bg1, *bg2;
-//@property SKSpriteNode *movePad;
+//@property SKSpriteNode *movePad;  // May or may not try to make this
 //@property SKSpriteNode *boss;
 @end

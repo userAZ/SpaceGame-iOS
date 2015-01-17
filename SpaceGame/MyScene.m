@@ -17,7 +17,7 @@
         
         SKSpriteNode *background;
         if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) {
-            background = [SKSpriteNode spriteNodeWithImageNamed:@"backgroundEDIT.png"];
+            background = [SKSpriteNode spriteNodeWithImageNamed:@"backgroundEDIT.jpg"];
         } else {
             background = [SKSpriteNode spriteNodeWithImageNamed:@"farback.gif"];
         }
